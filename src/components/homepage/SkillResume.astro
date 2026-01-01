@@ -1,0 +1,161 @@
+---
+import HardSkills from "@/components/HardSkills.astro";
+import SoftSkills from "@/components/SoftSkills.astro";
+
+---
+<style>
+.skill-container {
+      position: relative;
+      height: 90vh;
+      .guida-switch {
+        width: 15rem;
+        height: fit-content;
+        text-align: center;
+        position: absolute;
+        right: -10%;
+        top: 1%;
+        /* Stile per farlo sembrare una "nuvoletta" */
+        padding: 8px 12px;
+        background-color: var(--th-color);
+        color: var(--bg-color);
+        border-radius: 20px 20px 20px 0;
+        z-index: 10;
+        transition: all 0.5s ease-in-out;
+      }
+
+      #t-hard, #t-soft{
+        cursor: pointer;
+        height: 80vh;
+        position: absolute;
+        font-size: 10rem;
+        font-weight: 500;
+        writing-mode: vertical-rl;
+      }
+      #t-hard {
+        left: 0;
+        top: 0;
+        text-align: center;
+        color: var(--fo-color);
+        transform: rotate(180deg);
+        white-space: nowrap;
+        background-color: var(--bg-color);
+        
+      }
+      #t-soft {
+        right: 0;
+        top: 0;
+        font-size: 10rem;
+        font-weight: 500;
+        text-align: center;
+        white-space: nowrap;
+        color: transparent;
+        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: var(--fo-color);
+        text-stroke-width: 1px; /* fallbacck */
+        text-stroke-color: var(--fo-color);
+      }
+      .content-hard,
+      .content-soft {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        border: 1px solid var(--fo-color);
+        width: 71%;
+        height: 80vh;
+        z-index: 1;
+        padding: 2rem 3rem;
+      }
+
+      .content-hard{
+         background: linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0) 85%,
+          var(--bg-color) 93%
+        );
+      }
+
+      .content-soft {
+        display: none;
+         background: linear-gradient(
+          90deg,
+          var(--bg-color) 85%,
+          rgba(255, 255, 255, 0) 93%
+        );
+        ul {
+          list-style-type: disc;
+          padding-left: 1.5rem;
+          li {
+            margin-bottom: 0.5rem;
+          }
+        }
+      }
+    }
+</style>
+
+ <div class="skill-container">
+        <div class="guida-switch">Click here to discover the Soft Skills!</div>
+
+        <h3 id="t-hard">HARD</h3>
+
+        <div class="content-hard">
+          
+          <HardSkills />
+        </div>
+        <div class="content-soft">
+         <SoftSkills />
+        </div>
+
+        <h3 id="t-soft">SOFT</h3>
+      </div>
+    </div>
+
+    <script>
+  const contentHard = document.querySelector(".content-hard");
+  const contentSoft = document.querySelector(".content-soft");
+  const guidaSwitch = document.querySelector(".guida-switch");
+  const tHard = document.getElementById("t-hard");
+  const tSoft = document.getElementById("t-soft");
+
+  let isSoftMode = false; // Tieni traccia dello stato attuale
+
+  function change(isSoftMode: boolean) {
+    if (isSoftMode === true) {
+      guidaSwitch.textContent = "Click here to discover the Hard Skills!";
+      guidaSwitch.style.left = "-10%";
+      guidaSwitch.style.right = "auto";
+      guidaSwitch.style.bottom = "10%";
+      guidaSwitch.style.top = "auto";
+      guidaSwitch.style.borderRadius = "20px 0 20px 20px";
+      contentHard.style.display = "none";
+      contentSoft.style.display = "block";
+     
+      tHard.style.color = "transparent";
+      tHard.style.webkitTextStrokeWidth = "1px";
+      tHard.style.webkitTextStrokeColor = "var(--fo-color)";
+      tSoft.style.color = "var(--fo-color)";
+    } else {
+      guidaSwitch.textContent = "Click here to discover the Soft Skills!";
+      guidaSwitch.style.right = "-10%";
+      guidaSwitch.style.left = "auto";
+      guidaSwitch.style.top = "1%";
+      guidaSwitch.style.borderRadius = "20px  20px 20px 0";
+      contentHard.style.display = "block";
+      contentSoft.style.display = "none";
+      tSoft.style.color = "transparent";
+      tSoft.style.webkitTextStrokeWidth = "1px";
+      tSoft.style.webkitTextStrokeColor = "var(--fo-color)";
+      tHard.style.color = "var(--fo-color)";
+      
+    }
+  }
+
+  tSoft?.addEventListener("click", () => {
+    isSoftMode = true;
+    change(isSoftMode);
+  });
+
+  tHard?.addEventListener("click", () => {
+    isSoftMode = false;
+    change(isSoftMode);
+  });
+</script>

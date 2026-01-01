@@ -1,0 +1,55 @@
+---
+
+---
+
+<style>
+  footer {
+    padding: 1rem 0;
+    background-color: var(--bg-color);
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-top: 2px solid var(--fo-color);
+    .copyright {
+      p {
+        font-weight: 600;
+        font-size: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #corp {
+        display: inline-block;
+        font-size: 1.5rem;
+        margin-right: 0.3rem;
+        animation: somersault 2s ease-out infinite;
+        transform-origin: 50% 50%;
+      }
+    }
+  }
+
+  @keyframes somersault {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #corp {
+      animation: none;
+    }
+  }
+
+
+</style>
+
+<footer>
+  <div class="copyright">
+    <p><span id="corp">&#169;</span> Arianna Pesce</p>
+  </div>
+</footer>

@@ -1,0 +1,23 @@
+{
+  "name": "Arianna Pesce Portfolio",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "astro": "^5.16.2",
+    "astro-icon": "^1.1.5",
+    "canvas-confetti": "^1.9.4"
+  },
+  "devDependencies": {
+    "@iconify-json/ic": "^1.2.4",
+    "@iconify-json/line-md": "^1.2.11",
+    "@iconify-json/skill-icons": "^1.2.3",
+    "sass-embedded": "^1.97.1"
+  }
+}

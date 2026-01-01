@@ -1,0 +1,79 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<style>
+  .soft-skills {
+    height: 100%;
+    margin: auto;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    padding: 3rem 0;
+    h3 {
+      text-align: center;
+      color: var(--text-color);
+
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .soft {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      list-style-type: none; 
+      padding-left: 0;
+      li {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        color: var(--text-color);
+        font-size: 1.1rem;
+         &:hover {
+        scale: 1.2;
+        transition: scale 0.2s ease-in-out;
+      }
+        .icon {
+          color: var(--text-color);
+          font-size: 2rem;
+        }
+      }
+    }
+    .right {
+      ul {
+        list-style-type: none;
+        li {
+          color: var(--text-color);
+          margin-bottom: 0.5rem;
+        }
+      }
+    }
+  }
+  
+</style>
+
+<div class="soft-skills">
+  <div class="soft">
+    <h3>SOFT SKILLS</h3>
+    <ul>
+      <li><Icon class="icon" name="ic:twotone-psychology" />Problem solving</li>
+      <li><Icon class="icon" name="ic:twotone-groups-2" />Team-working</li>
+      <li><Icon class="icon" name="ic:sharp-wechat" />Communication</li>
+      <li><Icon class="icon" name="ic:twotone-interests" />Details oriented</li>
+      <li><Icon class="icon" name="ic:baseline-swap-calls" />Flexibility</li>
+      <li><Icon class="icon" name="ic:twotone-extension" />Adaptability</li>
+    </ul>
+  </div>
+  <div class="soft">
+    <h3>LANGUAGES</h3>
+    <ul class="none-list">
+      <li>Italian - Native</li>
+      <li>Spanish - C1</li>
+      <li>English - B2</li>
+      <li>French - A2</li>
+      <li>German - A2</li>
+    </ul>
+  </div>
+</div>

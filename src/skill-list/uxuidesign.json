@@ -1,0 +1,17 @@
+[
+     {
+        "name": "Figma",
+        "points": "20",
+        "icon": "skill-icons:figma-light"
+    },
+    {
+        "name": "Wordpress Elementor",
+        "points": "60",
+        "icon": "skill-icons:wordpress"
+    },
+    {
+        "name": "Accessibility",
+        "points": "40",
+        "icon": "ic:outline-accessibility-new"
+    }
+]

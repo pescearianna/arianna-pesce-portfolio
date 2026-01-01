@@ -1,0 +1,38 @@
+[
+    {
+        "name": "HTML5",
+        "points": "90",
+        "icon": "skill-icons:html"
+    },
+    {
+        "name": "CSS",
+        "points": "80",
+        "icon": "skill-icons:css"
+    },
+    {
+        "name": "SASS",
+        "points": "80",
+        "icon": "skill-icons:sass"
+    },
+    {
+        "name": "Typescript",
+        "points": "60",
+        "icon": "skill-icons:typescript"
+    },
+    {
+        "name": "Javascript",
+        "points": "60",
+        "icon": "skill-icons:javascript"
+    },
+    {
+        "name": "React",
+        "points": "60",
+        "icon": "skill-icons:react-dark"
+    },
+    {
+        "name": "Astro",
+        "points": "40",
+        "icon": "skill-icons:astro"
+    }
+    
+]

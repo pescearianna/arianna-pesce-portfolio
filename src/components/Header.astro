@@ -1,0 +1,286 @@
+---
+import { Icon } from "astro-icon/components";
+const title = Astro.props.title;
+---
+
+<style lang="scss">
+  header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.1rem 8rem;
+    border-bottom: 2px solid transparent;
+    border-image-source: radial-gradient(
+      circle,
+      var(--fo-color) 0%,
+      var(--bg-color) 70%
+    );
+    border-image-slice: 1; /* Fette da 1px */
+    /* Puoi aggiungere border-radius con questo metodo */
+    border-radius: 10px;
+    z-index: 10;
+    height: 2.5rem;
+    @media (min-width: 481) {
+      &:hover {
+        height: 4.5rem;
+        transition: height 0.5s ease-in-out;
+      }
+      &:hover .logo-name img {
+        height: 70px;
+        transition: height 0.5s ease-in-out;
+      }
+      &:hover .logo-name p {
+        font-size: 1.85rem;
+        line-height: 1.3rem;
+        transition:
+          font-size 0.5s ease-in-out,
+          line-height 0.5s ease-in-out;
+      }
+    }
+
+    .logo-name {
+      a {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: inherit;
+        p {
+          font-size: 1rem;
+          text-transform: uppercase;
+          line-height: 0.7rem;
+        }
+        img {
+          height: 35px;
+
+          margin-bottom: -2px;
+        }
+      }
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--text-color);
+      @media screen and (min-width: 481px) {
+        #mobile-first {
+          display: none;
+        }
+      }
+
+      nav {
+        ul {
+          width: 300px;
+          display: flex;
+          position: relative;
+          list-style: none;
+          justify-content: center;
+          align-items: center;
+
+          height: 10vh;
+          border-radius: 8px;
+          li {
+            width: 100px;
+            text-align: center;
+            position: relative;
+            z-index: 3;
+
+            font-size: 1.2rem;
+            cursor: pointer;
+
+            a {
+              text-decoration: none;
+              color: inherit;
+            }
+          }
+          span {
+            position: absolute;
+            bottom: 15px;
+            left: 0px;
+            width: 80px;
+            height: 7%;
+            background: linear-gradient(
+              90deg,
+              var(--fo-color) 0%,
+              var(--th-color) 100%
+            );
+            border-radius: 8px;
+            transition: 0.5s;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 2;
+          }
+          li:hover ~ span {
+            opacity: 1;
+            visibility: visible;
+          }
+
+          li:nth-child(1):hover ~ span {
+            left: 10px;
+          }
+          li:nth-child(2):hover ~ span {
+            left: 110px;
+          }
+          li:nth-child(3):hover ~ span {
+            left: 210px;
+          }
+        }
+        .menu {
+          clear: none;
+          max-height: none;
+        }
+      }
+    }
+    .social {
+      display: flex;
+      align-items: center;
+      margin-left: 2rem;
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      .icon {
+        filter: drop-shadow(2px 2px 2px rgb(253, 253, 253, 0.5));
+        padding: 0 0.5rem;
+      }
+    }
+  }
+
+  #mobile-first {
+    display: none;
+  }
+
+  @media (max-width: 480px) {
+    header {
+      padding: 0.2rem 2rem;
+      height: 4rem;
+      position: relative;
+      button {
+        .icon-menu {
+          font-size: 3rem;
+        }
+        .icon-close {
+          display: none;
+        }
+      }
+
+      .container {
+        display: none;
+      }
+      .container.is-open {
+        display: block;
+        position: absolute;
+        top: 4rem;
+        left: 0;
+        height: 100vh;
+        width: 100%;
+        background-color: var(--bg-color);
+        padding: 1rem 2rem;
+
+        ~ #mobile-first .icon-menu {
+          display: none;
+        }
+        ~ #mobile-first .icon-close {
+          display: inline-block;
+          font-size: 3rem;
+        }
+
+        nav {
+          height: auto;
+          ul {
+            flex-direction: column;
+            height: auto;
+            width: 100%;
+            li {
+              width: 100%;
+              font-size: 2rem;
+              margin-bottom: 1rem;
+
+              border-bottom: 2px solid transparent;
+              border-image-source: radial-gradient(
+                circle,
+                var(--fo-color) 0%,
+                var(--bg-color) 70%
+              );
+              border-image-slice: 1;
+            }
+          }
+        }
+        .social {
+          width: 70%;
+          margin: 1rem auto;
+          align-items: center;
+          justify-content: space-around;
+        }
+      }
+    }
+
+    #mobile-first {
+      display: block;
+      all: unset;
+      .hamburger-menu {
+        font-size: 3rem;
+      }
+    }
+  }
+</style>
+
+<header>
+  <div class="logo-name">
+    <a href="/"
+      ><img
+        src="/images/logo.png"
+        alt="logo Arianna Pesce | Full Stack Developer"
+      />
+      <p>Arianna<br />Pesce</p></a
+    >
+  </div>
+
+  <div class="container">
+    <nav>
+      <ul class="menu">
+        <li><a href="/">About</a></li>
+        <li><a href="/portfolio">Works</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <span></span>
+      </ul>
+    </nav>
+    <div class="social">
+      <a
+        href="https://www.linkedin.com/in/ariannapesce/"
+        target="_blank"
+        rel="noopener"
+        ><i
+          ><Icon
+            size="3rem"
+            class="icon"
+            name="line-md:linkedin"
+            size="3rem"
+          /></i
+        ></a
+      >
+      <a href="https://github.com/pescearianna" target="_blank" rel="noopener"
+        ><i><Icon class="icon" name="line-md:github-loop" size="3rem" /></i></a
+      >
+    </div>
+  </div>
+  <button id="mobile-first">
+    <Icon class="icon-menu" name="ic:round-menu" />
+    <Icon class="icon-close" name="ic:round-close" />
+  </button>
+</header>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const buttonMenu = document.querySelector("#mobile-first");
+    const containerMenu = document.querySelector(".container");
+    const iconMenu = document.querySelector(".hamburger-menu");
+    buttonMenu?.addEventListener("click", () => {
+      containerMenu?.classList.toggle("is-open");
+    });
+  });
+</script>

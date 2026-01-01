@@ -1,0 +1,59 @@
+---
+import { Icon } from "astro-icon/components";
+
+const { icon, name, points } = Astro.props;
+---
+<style>
+    .skill{
+        margin: 0.8rem 0;
+       
+        display: grid;
+        grid-template-columns: auto 1fr 1.5fr ;
+        &:hover{
+              scale: 1.2;
+              transition: scale 0.2s ease-in-out;
+            }
+        label{
+            text-align: start;
+            color: var(--text-color);
+            margin:auto 0.5rem;
+        }
+        progress{
+            margin: auto;
+            
+            height: 10px;
+            -webkit-appearance: none;
+    appearance: none; 
+  }
+  progress::-webkit-progress-bar {
+    background-color: transparent;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--th-color);
+   
+    
+  }
+  progress::-webkit-progress-value {
+    background-color: var(--th-color);
+    opacity: 0.99;
+    border-radius: 6px;
+    transition: width 3s ease;
+  }
+  progress::-moz-progress-bar {
+    background-color: var(--text-color);
+    border-radius: 10px;
+  }
+        }
+        .icon{
+            margin: auto;
+            
+        }
+    
+</style>
+
+<div class="skill">
+  <Icon class="icon" name={icon} size="2.5rem" />
+  <label for={name}>{name}</label>
+  <progress id={name} max="100" value={points}></progress>
+   
+</div>

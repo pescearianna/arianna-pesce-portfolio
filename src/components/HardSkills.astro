@@ -1,0 +1,66 @@
+---
+import frontendskills from "@/skill-list/frontendskills.json";
+import backendskills from "@/skill-list/backendskills.json";
+import uxuidesignskills from "@/skill-list/uxuidesign.json";
+import Skill from "@/components/Skill.astro";
+---
+<style>
+    .skill-hard-container{
+      padding: 1rem;
+        display: grid;
+        grid-template-columns: auto auto;
+        gap: 0.5rem 3rem;
+        
+    }
+</style>
+
+<div class="skill-hard-container">
+  <div class="left">
+    <h3>FRONT-END DEVELOPMENT</h3>
+      {
+                  frontendskills.map((skill) => (
+                    <div class="skill">
+                      {/* Usiamo i dati della singola 'skill' */}
+                      <Skill
+                        icon={skill.icon}
+                        name={skill.name}
+                        points={skill.points}
+                      />
+                    </div>
+                  ))
+                }
+  </div>
+  <div class="right">
+    <h3>BACK-END DEVELOPMENT</h3>
+    {
+                  backendskills.map((skill) => (
+                    <div class="skill">
+                      {/* Usiamo i dati della singola 'skill' */}
+                      <Skill
+                        icon={skill.icon}
+                        name={skill.name}
+                        points={skill.points}
+                      />
+                    </div>
+                  ))
+                }
+                <br>
+                <br>
+                <h3>OTHERS</h3>
+                 {
+                  uxuidesignskills.map((skill) => (
+                    <div class="skill">
+                      {/* Usiamo i dati della singola 'skill' */}
+                      <Skill
+                        icon={skill.icon}
+                        name={skill.name}
+                        points={skill.points}
+                      />
+                    </div>
+                  ))
+                }
+
+  </div>
+
+          
+        </div>

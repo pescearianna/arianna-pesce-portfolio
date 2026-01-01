@@ -1,0 +1,11 @@
+[{
+        "name": "Node.js",
+        "points": "60",
+        "icon": "skill-icons:nodejs-dark"
+    },
+    
+    {
+        "name": "MySQL",
+        "points": "70",
+        "icon": "skill-icons:mysql-dark"
+    }]

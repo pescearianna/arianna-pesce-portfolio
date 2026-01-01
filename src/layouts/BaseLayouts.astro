@@ -1,0 +1,87 @@
+---
+
+const { title, description } = Astro.props;
+import { ClientRouter } from "astro:transitions";
+---
+<style is:global>
+	:root {
+	--font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  	/* --bg-color: rgb(47, 47, 77);
+	--text-color: rgb(235, 237, 242);
+	--th-color: rgb(255, 243, 0);
+	--fo-color: rgb(255, 174, 23);
+	--fi-color: rgb(165, 42, 42); */
+	/* --bg-color: #233D4D;
+	--text-color: #FDFFFC;
+	--th-color: #9C95DC;
+	--fo-color: #9C95DC;
+	--fi-color: #FE7F2D; */
+	--bg-color: #101621;
+	--text-color: #F2F4F7;
+	--th-color: #F4C747;
+	--fo-color: #ADCAD6;
+	--fi-color: #FE7F2D;
+	--serif: "Poppins", system-ui;
+	--sans: 'Inter', sans-serif;
+}
+
+
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+	
+	
+  }
+
+  ::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: gray;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--fo-color);
+}
+
+  body{
+	background-color: var(--bg-color);
+	font-family: var(--serif);
+	width: 100%;
+  }
+
+  h1, h2, h3, h4 {
+	font-family: var(--serif);
+	font-style: italic;
+  }
+
+  p{
+	font-family: var(--sans);
+	color: var(--text-color);
+  }
+</style>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		
+		<meta name="viewport" content="width=device-width,  initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.png" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+    	<meta name="description" content={description} />
+		 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<ClientRouter />
+	</head>
+	<body>
+		
+        <slot> </slot>
+
+	</body>
+</html>

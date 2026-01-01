@@ -1,0 +1,139 @@
+---
+import Button from "../Button.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<style lang="scss">
+ 
+
+
+  .container-last {
+    .text {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      right: 50%;
+      transform: translateX(50%);
+      h2 {
+        font-size: 3rem;
+        text-transform: uppercase;
+      }
+      p {
+        width: 60%;
+        font-size: 2rem;
+        opacity: 0.8;
+      }
+    }
+    .controls {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 4rem;
+    }
+    .social {
+      margin: 5rem 0 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+
+      a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        .icon {
+          font-size: 2rem;
+          color: var(--text-color);
+        }
+
+        .icon,
+        p {
+          color: var(--text-color);
+          &:hover {
+            color: var(--th-color);
+          }
+        }
+      }
+    }
+  }
+
+   @media (min-width: 481px){
+    .container-last {
+    height: 60vh;
+    margin: 2rem 0;
+    .text{
+       margin-bottom: 2rem;
+    }
+    
+  }
+}
+
+@media (max-width: 480px){
+    .container-last {
+     padding: 0.5rem 1rem;
+     height: auto;
+    .text{
+       margin-bottom: 0.5rem;
+       
+       h2{
+        font-size: 2rem;
+       }
+      p {
+        width: 90%;
+        font-size: 1rem;
+  
+      }
+    }
+  }
+}
+</style>
+
+<div class="container-last">
+  <div class="text">
+    <h2 class="text-title" transition:name="git-title">Get in touch!</h2>
+    <p class="text-text">
+      Have you already an amazing idea for a project or do you need to know me
+      better?<br />
+      Let's talk together!
+    </p>
+  </div>
+
+  <div class="controls">
+    <a href="/contact"><Button text="Send me a message!" /></a>
+    <a href="/portfolio/"><Button text="See my latest works!" /></a>
+  </div>
+  <div class="social">
+    <a href="https://www.linkedin.com/in/ariannapesce" target="_blank"
+      ><Icon class="icon" name="line-md:linkedin" /></a
+    >
+    <a href="https://github.com/pescearianna" target="_blank"
+      ><Icon class="icon" name="line-md:github-loop" /></a
+    >
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const content = document.querySelector(".container-last");
+    content.addEventListener("mousemove", function (e) {
+      const mouseX = e.clientX;
+      const mouseY = e.clientY;
+      const rect = content.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+
+      const moveX = (mouseX - centerX) / 20;
+      const moveY = (mouseY - centerY) / 20;
+
+      document.querySelector(".text-title").style.transform =
+        `translate(${moveX}px, ${moveY}px)`;
+      document.querySelector(".text-text").style.transform =
+        `translate(${moveX * 0.5}px, ${moveY * 0.5}px)`;
+    });
+  });
+</script>
