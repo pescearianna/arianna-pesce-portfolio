@@ -6,7 +6,7 @@ import education from "@/assets/education.png";
 import experience from "@/assets/experience.png";
 import decoration from "@/assets/decoration-flip.jpg";
 const decorationImage = `url(${decoration})`;
-import funnyme from "@/assets/lang-me.png"
+import funnyme from "@/assets/lang-me.png";
 import { Icon } from "astro-icon/components";
 ---
 
@@ -15,8 +15,8 @@ import { Icon } from "astro-icon/components";
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 90vh;
 
-    height: 90vh;
     gap: 1rem;
     .menu {
       content: "";
@@ -95,93 +95,50 @@ import { Icon } from "astro-icon/components";
     #title {
       font-size: 2rem;
       font-weight: 600;
-    }
+    } /*
     .aboutme {
       padding: 2rem 4rem;
     }
     #desc {
       width: 80%;
       height: 60vh;
-    }
-    
+    } */
+
     .wrap-description {
       height: 100%;
-      
+
       position: relative;
 
       .aboutme-text-descr {
-        width: 70%;
         padding: 1rem;
-        position: absolute;
-        top: 0;
-        right: 50%;
-        transform: translateX(50%);
-    
-        
-      
-      
-     
-      p{
-        font-size: 1.2rem;
-      line-height: 1.6; /* Interlinea */
-      text-align: center;
+        p {
+          font-size: 1.2rem;
+          line-height: 1.6; /* Interlinea */
+          text-align: center;
+        }
       }
-      
-      .things-love{
-        font-size: 1.8rem;
+    }
 
-      }
-    }
-   
-      .pointer{
-        display: block;
-        position: absolute;
-        right: -2%;
-        bottom: 0;
-      max-height: 300px;
-      width: auto;
-    }
-    
-    
-    }
-      
-   
-    
     .time-wrap {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: self-start;
-      margin: 2rem 0;
       .past {
-        width: 59%;
-
-        list-style: none;
+        width: 100%;
         display: grid;
         grid-template-columns: auto auto;
-        gap: 2rem;
-        margin: 2rem 0;
+        gap: 1.3rem;
         .when {
           font-size: 1rem;
           text-decoration: underline;
           text-decoration-color: var(--fo-color);
         }
         .title {
-          font-size: 1.3rem;
-          font-weight: 600;
+          font-size: 1.2rem;
         }
         .place {
           font-size: 1rem;
+          opacity: 0.8;
         }
       }
       .future {
-        height: 100%;
-        width: 40%;
-
-        padding: 0 2rem;
-        perspective: 1000px;
-
         .card {
           color: var(--bg-color);
           background: var(--th-color);
@@ -191,15 +148,83 @@ import { Icon } from "astro-icon/components";
           height: 100%;
           text-align: center;
           align-items: center;
-
-          transition: transform 2s;
-          transform-style: preserve-3d;
         }
+      }
+    }
+
+    @media screen and (min-width: 768px) {
+      .container {
+        height: 90vh;
+      }
+      #title {
+        font-size: 2rem;
+        font-weight: 600;
+      }
+      .aboutme {
+        padding: 2rem 4rem;
+      }
+      #desc {
+       
+        height: 60vh;
+      }
+      /* part about me*/
+      .wrap-description {
+        .aboutme-text-descr {
+          width: 70%;
+          position: absolute;
+          top: 0;
+          right: 50%;
+          transform: translateX(50%);
+          p {
+            margin-bottom: 1rem;
+          }
+        }
+        .pointer {
+          display: block;
+          position: absolute;
+          right: -2%;
+          bottom: 0;
+          max-height: 300px;
+          width: auto;
+        }
+      }
+
+      /* part education*/
+      .time-wrap {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: self-start;
+        margin: 2rem 0;
+        .past {
+          width: 59%;
+
+          list-style: none;
+
+          margin: 2rem 0;
+
+          .title {
+            font-size: 1.3rem;
+            font-weight: 600;
+          }
+        }
+        .future {
+          height: 100%;
+          width: 40%;
+
+          padding: 0 2rem;
+          perspective: 1000px;
+         
         &:hover .card {
           transform: rotateY(180deg);
           transition: transform 1s;
         }
+ .card{
+          transition: transform 2s;
+          transform-style: preserve-3d;
 
+ 
         .front,
         .back {
           position: absolute;
@@ -216,7 +241,7 @@ import { Icon } from "astro-icon/components";
 
         .front {
           justify-content: space-evenly;
-        
+
           h4 {
             color: var(--bg-color);
             text-align: center;
@@ -242,7 +267,7 @@ import { Icon } from "astro-icon/components";
           }
           #good-p-title {
             font-size: 1rem;
-           
+
             text-decoration-color: var(--fo-color);
           }
           #gp-title {
@@ -254,9 +279,55 @@ import { Icon } from "astro-icon/components";
             font-size: 1.3rem;
           }
         }
+      }}
+    }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    /* mobile -part about me*/
+    .wrap-description {
+      .aboutme-text-descr {
+        p {
+          margin-bottom: 0.8rem;
+        }
+      }
+      .pointer {
+        display: none;
+      }
+    }
+    /* mobile -part education*/
+    .time-wrap {
+      .past {
+        grid-template-columns: 1fr 3fr;
+      }
+      .future {
+        margin: 2rem 0 0;
+        .card {
+          color: var(--bg-color);
+          padding: 1.5rem 1rem;
+          .back {
+            p {
+              color: var(--bg-color);
+              margin-bottom: 1rem;
+            }
+          }
+        }
       }
     }
   }
+
+   @media screen and (min-width: 600px) {
+    #desc{
+      width:90%;
+    }
+   }
+
+   @media screen and (min-width: 992px ){
+    #desc{
+      width:80%;
+    }
+   }
 </style>
 
 <div class="container">
@@ -279,136 +350,136 @@ import { Icon } from "astro-icon/components";
         /></button
       >
     </button>
-     </fieldset>
-    <h3 id="title"></h3>
+  </fieldset>
+  <h3 id="title"></h3>
 
-    <div id="desc"></div>
+  <div id="desc"></div>
 
-    <template id="desc-0">
-     <div class="wrap-description">
+  <template id="desc-0">
+    <div class="wrap-description">
       <div class="aboutme-text-descr">
-        
         <p>
-          <strong>Aspiring Front-End Developer with a growing passion for UX/UI Design.</strong> <br>
-          <br>
-
-I have just finished my <strong>Full Stack Development</strong> studies. I love the Front-End tecnologies and in the future I would like to go deeper in my <strong> interest in UX/UI Design field</strong> to understanding the user needs and create cleaner, more intuitive and user-friendly app.
-<br>
-<br>
-In the future, I&#39;d love to combine my programming skills with UX/UI and work on digital products to <strong>make the web a better place.</strong> ✨
+          <strong
+            >Aspiring Front-End Developer with a growing passion for UX/UI
+            Design.</strong
+          >
+        </p><p>
+          I have just finished my <strong>Full Stack Development</strong> studies.
+          I love the Front-End tecnologies and in the future I would like to go deeper
+          in my <strong> interest in UX/UI Design field</strong> to understanding
+          the user needs and create cleaner, more intuitive and user-friendly app.
+        </p><p>
+          In the future, I&#39;d love to combine my programming skills with
+          UX/UI and work on digital products to <strong
+            >make the web a better place.</strong
+          > ✨
         </p>
-        <br>
-        <br>
-        <p class="things-love">Others things I love: <span id="love">FLOWER</span> </p>
       </div>
- 
-        <Image class="pointer" src={funnyme} alt="arianna-pesce-funny" />
-      
-</div>
-    </template>
 
-    <template id="desc-1">
-      <div class="education time-wrap">
-        <div class="past">
-          <span class="when">2024 - today</span>
-          <div>
-            <p class="title">Full Stack Development</p>
+      <Image class="pointer" src={funnyme} alt="arianna-pesce-funny" />
+    </div>
+  </template>
+
+  <template id="desc-1">
+    <div class="education time-wrap">
+      <div class="past">
+        <span class="when">2024 - today</span>
+        <div>
+          <p class="title">Full Stack Development</p>
+          <p class="place">start2impact University</p>
+        </div>
+
+        <span class="when">2020</span>
+        <div>
+          <p class="title">Wine Marketing Specialist</p>
+          <p class="place">Pianeta Formazione Srl</p>
+        </div>
+
+        <span class="when">2017 - 2019</span>
+        <div>
+          <p class="title">Bachelor's Degree in Foreign trade</p>
+          <p class="place">Ca'Foscari Venice</p>
+        </div>
+      </div>
+
+      <div class="future">
+        <div class="card">
+          <div class="front">
+            <h4>WHATS NEXT...</h4>
+          </div>
+          <div class="back">
+            <p id="good-p-title">2026 - in progress</p>
+            <p id="good-p-content">
+              Currently pursuing <strong>UX/UI Design </strong>training to
+              expand user-centered design and interface skills.
+            </p>
             <p class="place">start2impact University</p>
           </div>
-
-          <span class="when">2020</span>
-          <div>
-            <p class="title">Wine Marketing Specialist</p>
-            <p class="place">Pianeta Formazione Srl</p>
-          </div>
-
-          <span class="when">2017 - 2019</span>
-          <div>
-            <p class="title">Bachelor's Degree in Foreign trade</p>
-            <p class="place">Ca'Foscari Venice</p>
-          </div>
-        </div>
-
-        <div class="future">
-          <div class="card">
-            <div class="front">
-              <h4>WHATS NEXT...</h4>
-            </div>
-            <div class="back">
-              <p id="good-p-title">2026 - in progress</p>
-              <p id="good-p-content">
-                Currently pursuing <strong>UX/UI Design </strong>training to
-                expand user-centered design and interface skills.
-              </p>
-              <p class="place">start2impact University</p>
-            </div>
-          </div>
         </div>
       </div>
-    </template>
+    </div>
+  </template>
 
-    <template id="desc-2">
-      <div class="experience time-wrap">
-        <div class="past">
-          <span class="when">2021 - 2025</span>
-          <div>
-            <p class="title">Receptionist</p>
-            <p class="place">
-              Camping Capfun Mirmanda | Barcelona <br />
-              Hotel Tui Blue Rocador | Mallorca <br />
-              Summer Hostel Càdiz | Càdiz
+  <template id="desc-2">
+    <div class="experience time-wrap">
+      <div class="past">
+        <span class="when">2021 - 2025</span>
+        <div>
+          <p class="title">Receptionist</p>
+          <p class="place">
+            Camping Capfun Mirmanda | Barcelona <br />
+            Hotel Tui Blue Rocador | Mallorca <br />
+            Summer Hostel Càdiz | Càdiz
+          </p>
+        </div>
+
+        <span class="when">2020</span>
+        <div>
+          <p class="title">Internship Junior Marketing and E-Commerce</p>
+          <p class="place">OFHK Europe Srl | Treviso</p>
+        </div>
+
+        <span class="when">2017-2020</span>
+        <div>
+          <p class="title">Waitress</p>
+          <p class="place">Trattoria al Grion | Trebaseleghe</p>
+        </div>
+      </div>
+      <div class="future">
+        <div class="card">
+          <div class="front">
+            <h4>WHATS NEXT...</h4>
+          </div>
+          <div class="back">
+            <p id="good-p-title">2026</p>
+            <p id="good-p-content">
+              Looking for the <strong>opportunity</strong> to apply my <strong
+                >Front-End Developer</strong
+              >
+              skills and continue learning in a real-world environment.
             </p>
           </div>
-
-          <span class="when">2020</span>
-          <div>
-            <p class="title">Internship Junior Marketing and E-Commerce</p>
-            <p class="place">OFHK Europe Srl | Treviso</p>
-          </div>
-
-          <span class="when">2017-2020</span>
-          <div>
-            <p class="title">Waitress</p>
-            <p class="place">Trattoria al Grion | Trebaseleghe</p>
-          </div>
-        </div>
-        <div class="future">
-          <div class="card">
-            <div class="front">
-              <h4>WHATS NEXT...</h4>
-              
-            </div>
-            <div class="back">
-              <p id="good-p-title">2026</p>
-              <p id="good-p-content">
-                Looking for the <strong>opportunity</strong> to apply my <strong>Front-End Developer</strong>
-                skills and continue learning in a real-world environment.
-              </p>
-            </div>
-          </div>
         </div>
       </div>
-    </template>
+    </div>
+  </template>
 
-      <script>
-        const buttons = document.querySelectorAll(".step");
-        const title = document.getElementById("title");
-        const desc = document.getElementById("desc");
+  <script>
+    const buttons = document.querySelectorAll(".step");
+    const title = document.getElementById("title");
+    const desc = document.getElementById("desc");
 
-        const titles = ["WHO I AM", "EDUCATION", "EXPERIENCE"];
+    const titles = ["WHO I AM", "EDUCATION", "EXPERIENCE"];
 
-        buttons.forEach((btn) => {
-          btn.addEventListener("mouseenter", () => {
-            const i = btn.dataset.step;
-            title.textContent = titles[i];
+    buttons.forEach((btn) => {
+      btn.addEventListener("mouseenter", () => {
+        const i = btn.dataset.step;
+        title.textContent = titles[i];
 
-            desc.innerHTML = "";
-            const tpl = document.getElementById(`desc-${i}`);
-            desc.appendChild(tpl.content.cloneNode(true));
-          });
-        });
-      </script>
- 
-
- 
+        desc.innerHTML = "";
+        const tpl = document.getElementById(`desc-${i}`);
+        desc.appendChild(tpl.content.cloneNode(true));
+      });
+    });
+  </script>
 </div>

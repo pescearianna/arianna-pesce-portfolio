@@ -13,11 +13,14 @@ const uniqueId = `project-card-${project.slug}`;
 <style>
   .project {
     min-height: 60vh;
+    perspective: 1000px;
     .card {
       .box {
         border-radius: 5%;
 
         box-shadow: 2px 2px 10px rgba(255, 255, 255, 0.8);
+        transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
+    will-change: transform, box-shadow; /* Ottimizza le prestazioni GPU */
         #cover-prj {
           display: block;
 
@@ -215,13 +218,13 @@ const uniqueId = `project-card-${project.slug}`;
 
 <section class="project" data-project-container>
   <div class="card">
-    <div class="box" id={`${uniqueId}-box`}>
+    <div class="box" id={`${uniqueId}-box`} data-box>
       <img id="cover-prj" src={project.data.cover} alt={project.data.title} />
-      <div class="light" id={`${uniqueId}-light`}></div>
+      <div class="light" id={`${uniqueId}-light`} data-light></div>
     </div>
   </div>
 
-  <div class="details" id={`${uniqueId}-details`}>
+  <div class="details" id={`${uniqueId}-details`} data-details>
     <p class="tech">{project.data.tech}</p>
     <div class="text">
       <h2>{project.data.title}</h2>
@@ -244,57 +247,63 @@ const uniqueId = `project-card-${project.slug}`;
 </section>
 
 <script define:vars={{ uniqueId }}>
-  window.addEventListener("resize", () => {
-    if (window.innerWidth >= 1024) {
-      // Il valore di uniqueId viene iniettato nello script
-      const box = document.getElementById(`${uniqueId}-box`);
-      const light = document.getElementById(`${uniqueId}-light`);
-      const details = document.getElementById(`${uniqueId}-details`);
+ // Script unico per tutti i componenti (più performante)
+  const initProjectEffect = () => {
+    const containers = document.querySelectorAll('[data-project-container]');
+    const isTouch = window.matchMedia("(pointer: coarse)").matches;
 
-      if (box && light) {
+    containers.forEach(container => {
+      const box = container.querySelector('[data-box]');
+      const light = container.querySelector('[data-light]');
+      const details = container.querySelector('[data-details]');
+
+      if (!box || !light) return;
+
+      // --- EFFETTO MOUSE (Solo se non è touch) ---
+      if (!isTouch) {
         box.addEventListener("mousemove", (e) => {
           const rect = box.getBoundingClientRect();
-
-          // 2. Calcola la posizione del mouse rispetto all'angolo in alto a sinistra del box
           const xCursor = e.clientX - rect.left;
           const yCursor = e.clientY - rect.top;
-
-          // 3. Calcola il centro del box
+          
           const centerX = rect.width / 2;
           const centerY = rect.height / 2;
+          const rotateX = (centerY - yCursor) / 10;
+          const rotateY = (xCursor - centerX) / 10;
 
-          // 4. Calcola la distanza dal centro del box
-          //    (Questa sarà zero al centro e massima ai bordi)
-          const deltaX = centerX - xCursor;
-          const deltaY = centerY - yCursor;
-
-          //     // 5. Normalizza i valori e riduci la sensibilità (ad esempio, dividi per 15 o 20)
-          //    Il segno (positivo/negativo) controlla la direzione della rotazione.
-          const rotateX = deltaX / 15; // Più grande è il divisore, meno ruota
-          const rotateY = deltaY / 15;
-
-          //     // Applica la rotazione (inverti rotateX e rotateY per l'effetto di parallasse)
-          box.style.transform = `rotateY(${rotateX}deg) rotateX(${-rotateY}deg)`;
-          box.style.boxShadow = `${-rotateX}px ${-rotateY}px 30px rgba(255, 255, 255, 0.60)`;
-          const x = e.clientX - rect.left; // posizione x dentro box
-          const y = e.clientY - rect.top; // posizione y dentro box
-
-          light.style.background = `
-       radial-gradient(
-         circle at ${x}px ${y}px,
-         rgba(255,255,255,0.4),
-         transparent 30%
-       )`;
-
-          details.style.opacity = 1;
-          details.style.transition = "opacity 1s ease-in";
+          box.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(0.95)`;
+          box.style.boxShadow = `${-rotateY}px ${rotateX}px 30px rgba(255, 255, 255, 0.60)`;
+          light.style.background = `radial-gradient(circle at ${xCursor}px ${yCursor}px, rgba(255,255,255,0.3), transparent 70%)`;
+          details.style.opacity = "1";
         });
 
         box.addEventListener("mouseleave", () => {
-          // quando il mouse esce, puoi far scomparire o spostare il gradiente
+          box.style.transform = `rotateX(0deg) rotateY(0deg) scale(0.7)`;
           light.style.background = "";
+          // details.style.opacity = "0";
         });
       }
-    }
-  });
+
+      // --- EFFETTO GIROSCOPIO (Per Mobile) ---
+      if (isTouch && window.DeviceOrientationEvent) {
+        window.addEventListener("deviceorientation", (e) => {
+          // beta: inclinazione avanti/dietro (-180 a 180)
+          // gamma: inclinazione sinistra/destra (-90 a 90)
+          const tiltX = Math.min(Math.max(e.beta, -30), 30) / 2; 
+          const tiltY = Math.min(Math.max(e.gamma, -30), 30) / 2;
+
+          box.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+          
+          // Muoviamo la luce in base all'inclinazione
+          const lightX = 50 + (tiltY * 2);
+          const lightY = 50 + (tiltX * 2);
+          light.style.background = `radial-gradient(circle at ${lightX}% ${lightY}%, rgba(255,255,255,0.2), transparent 80%)`;
+        });
+      }
+    });
+  };
+
+  // Esegui all'avvio e dopo eventuali navigazioni (se usi View Transitions)
+  initProjectEffect();
+  document.addEventListener('astro:after-swap', initProjectEffect);
 </script>

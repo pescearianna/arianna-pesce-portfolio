@@ -4,7 +4,9 @@ import SoftSkills from "@/components/SoftSkills.astro";
 
 ---
 <style>
-.skill-container {
+  
+ @media screen and (min-width: 1000px){
+  .skill-container {
       position: relative;
       height: 90vh;
       .guida-switch {
@@ -90,13 +92,25 @@ import SoftSkills from "@/components/SoftSkills.astro";
         }
       }
     }
+ }
+
+ @media screen and (max-width: 600px){
+  .skill-container{
+    #t-hard, #t-soft{
+      background-color: red;
+      width: 49%;
+      font-size: 3rem;
+    }
+  }
+ }
+
 </style>
 
  <div class="skill-container">
         <div class="guida-switch">Click here to discover the Soft Skills!</div>
 
         <h3 id="t-hard">HARD</h3>
-
+        <h3 id="t-soft">SOFT</h3>
         <div class="content-hard">
           
           <HardSkills />
@@ -105,7 +119,7 @@ import SoftSkills from "@/components/SoftSkills.astro";
          <SoftSkills />
         </div>
 
-        <h3 id="t-soft">SOFT</h3>
+        
       </div>
     </div>
 
