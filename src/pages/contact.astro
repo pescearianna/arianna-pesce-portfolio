@@ -119,14 +119,19 @@ const description = "Want to work together? Contact me!";
     width: 100%;
     flex-direction: column;
     height: auto;
+    padding: 0.5rem 0;
     .contact-left {
       width: 100%;
-      padding: 3rem;
+      padding: 1rem 3rem;
+      form .send-message{
+         width:100%;
+      }
     }
     .contact-right {
       width: 100%;
-      padding: 3rem;
+      padding: 1rem 3rem;
     }
+    
   }
 }
 </style>
@@ -151,10 +156,6 @@ const description = "Want to work together? Contact me!";
               </p> 
 			  <Icon class="icon" name="ic:round-coffee"/>
             </div>
-            <!-- <div class="info-c">
-              <i class="bi bi-geo-alt info-i" aria-hidden="true"></i>
-              <p>Around the world, currently based in Malaga</p>
-            </div> -->
           </div>
         </div>
 		 
@@ -201,7 +202,7 @@ const description = "Want to work together? Contact me!";
               aria-describedby="messagesronly"
             ></textarea>
             <p id="messagesronly">Enter your message for me, I would be happy to respond to you as soon as possible 😊 </p>
-            <Button text={`Send message`} type="submit" aria-label="Send your message"/> <span id="success-message"></span>
+            <Button class="send-message" text={`Send message`} type="submit" aria-label="Send your message"/> <span id="success-message"></span>
           </form>
         </div>
         
