@@ -1,5 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
+import {Image} from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 
 interface Props {
@@ -219,7 +220,7 @@ const uniqueId = `project-card-${project.slug}`;
 <section class="project" data-project-container aria-labelledby={`${uniqueId}-title`}>
   <div class="card">
     <div class="box" tabindex="0" role="group" id={`${uniqueId}-box`} data-box>
-      <img id="cover-prj" src={project.data.cover} alt={project.data.title} />
+      <Image id="cover-prj" src={project.data.cover} alt={project.data.title} />
       <div class="light" id={`${uniqueId}-light`} data-light></div>
     </div>
   </div>
