@@ -375,22 +375,21 @@ const title = Astro.props.title;
 </header>
 
 <script>
-  const setupMenu = () => {
-  document.addEventListener("DOMContentLoaded", () => {
+ document.addEventListener("astro:page-load", () => {
     const buttonMenu = document.querySelector("#mobile-first");
     const containerMenu = document.querySelector(".container");
-    // const iconMenu = document.querySelector(".hamburger-menu");
 
-    buttonMenu?.addEventListener("click", () => {
-      containerMenu?.classList.toggle("is-open");
-      if(containerMenu?.classList.contains("is-open")){
-        buttonMenu.setAttribute("aria-label", "close menu")
-      }else{
-        buttonMenu.setAttribute("aria-label", "open menu")
-      }
-    });
+    if (buttonMenu && containerMenu) {
+      buttonMenu.addEventListener("click", () => {
+        containerMenu.classList.toggle("is-open");
+        
+        if (containerMenu.classList.contains("is-open")) {
+          buttonMenu.setAttribute("aria-label", "close menu");
+        } else {
+          buttonMenu.setAttribute("aria-label", "open menu");
+        }
+      });
+    }
   });
-};
-
-  document.addEventListener('astro:page-load', setupMenu);
+ 
 </script>
