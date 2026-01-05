@@ -1,12 +1,11 @@
 <div align='center'>
     <img src="./src/assets/profile.png" alt="" style='margin: 20px auto; width:100px'>
-        <h1>Celestial | React Project - Arianna Pesce</h1>   
+        <h1>Arianna Pesce | Portfolio</h1>   
 </div>
 
 <div align='center'>
 <p>
   <a href="#description">Description</a> •
- 
 <a href="#technologies-Used">Technologies Used</a> •
   <a href="#contact">Contact</a>
 </p>

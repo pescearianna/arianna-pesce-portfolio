@@ -1,42 +1,38 @@
 ---
 import HardSkills from "@/components/HardSkills.astro";
 import SoftSkills from "@/components/SoftSkills.astro";
-
 ---
-<style lang="scss">
 
- .switch-btn{
-    all:unset;  
-    
+<style lang="scss">
+  .switch-btn {
+    all: unset;
+
     &:focus-visible {
-  outline: 3px solid var(--fo-color); /* O il colore che preferisci */
-  outline-offset: 4px;
-  box-shadow: 0 0 10px var(--fo-color);
-}
+      outline: 3px solid var(--fo-color); /* O il colore che preferisci */
+      outline-offset: 4px;
+      box-shadow: 0 0 10px var(--fo-color);
+    }
   }
 
   #t-hard {
+    text-align: center;
+    color: var(--fo-color);
 
-        text-align: center;
-        color: var(--fo-color);
-        
-        background-color: var(--bg-color);
-        
-      }
+    background-color: var(--bg-color);
+  }
 
-       #t-soft {
-        
-        text-align: center;
-        
-        color: transparent;
-        -webkit-text-stroke-width: 1px;
-        -webkit-text-stroke-color: var(--fo-color);
-        text-stroke-width: 1px; /* fallbacck */
-        text-stroke-color: var(--fo-color);
-      }
-  
- @media screen and (min-width: 992px){
-  .skill-container {
+  #t-soft {
+    text-align: center;
+
+    color: transparent;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: var(--fo-color);
+    text-stroke-width: 1px; /* fallbacck */
+    text-stroke-color: var(--fo-color);
+  }
+
+  @media screen and (min-width: 992px) {
+    .skill-container {
       position: relative;
       height: 90vh;
       .guida-switch {
@@ -55,7 +51,8 @@ import SoftSkills from "@/components/SoftSkills.astro";
         transition: all 0.5s ease-in-out;
       }
 
-      #t-hard, #t-soft{
+      #t-hard,
+      #t-soft {
         cursor: pointer;
         height: 80vh;
         position: absolute;
@@ -71,7 +68,6 @@ import SoftSkills from "@/components/SoftSkills.astro";
         transform: rotate(180deg);
         white-space: nowrap;
         background-color: var(--bg-color);
-        
       }
       #t-soft {
         right: 0;
@@ -86,17 +82,15 @@ import SoftSkills from "@/components/SoftSkills.astro";
         text-stroke-width: 1px; /* fallbacck */
         text-stroke-color: var(--fo-color);
       }
-     
+
       #content {
-      
         border: 1px solid var(--fo-color);
-        
+
         z-index: 1;
-        
       }
 
-      #content-hard{
-         background: linear-gradient(
+      #content-hard {
+        background: linear-gradient(
           90deg,
           rgba(255, 255, 255, 0) 85%,
           var(--bg-color) 93%
@@ -105,7 +99,7 @@ import SoftSkills from "@/components/SoftSkills.astro";
 
       #content-soft {
         display: none;
-         background: linear-gradient(
+        background: linear-gradient(
           90deg,
           var(--bg-color) 85%,
           rgba(255, 255, 255, 0) 93%
@@ -119,141 +113,142 @@ import SoftSkills from "@/components/SoftSkills.astro";
         }
       }
     }
- }
+  }
 
- @media screen and (min-width: 992px){
- #content {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 71%;
-        height: 80vh;
-         padding: 2rem 3rem;
-      }
- }
-
- @media screen and (max-width: 992px){
-  .skill-container{
-    .guida-switch{
-      display: none;
-    }
-    .switch-btn{
-      display: inline-block;
-    width: 48%;
-    }
-    .deco{
-      position:relative;
-      &:after{
-      content: "";
+  @media screen and (min-width: 992px) {
+    #content {
       position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 71%;
+      height: 80vh;
+      padding: 2rem 3rem;
+    }
+  }
+
+  @media screen and (max-width: 992px) {
+    .skill-container {
+      .guida-switch {
+        display: none;
+      }
+      .switch-btn {
+        display: inline-block;
+        width: 48%;
+      }
+      .deco {
+        position: relative;
+        &:after {
+          content: "";
+          position: absolute;
           top: 50%;
           right: 0;
           width: 4px;
           height: 3rem;
           background: var(--fo-color);
           transform: translateY(-50%);
-      
-    }
-    }
-    #t-hard, #t-soft{
-      text-align: center;
-      font-size: 2rem;
-      text-align: center;
-      
-    }
-    
-    #content{
-      border: 1px solid var(--fo-color);
+        }
+      }
+      #t-hard,
+      #t-soft {
+        text-align: center;
+        font-size: 2rem;
+        text-align: center;
+      }
+
+      #content {
+        border: 1px solid var(--fo-color);
         padding: 1rem;
         text-align: center;
+      }
     }
   }
- }
 
- @keyframes shake {
-  from {
-    background-color: red;
-  } to {
-    background-color: green;
+  @keyframes shake {
+    from {
+      background-color: red;
+    }
+    to {
+      background-color: green;
+    }
   }
- }
-
 </style>
 
- <div class="skill-container">
-        <div class="guida-switch">Click here to discover the Soft Skills!</div>
+<div class="skill-container">
+  <div class="guida-switch">Click here to discover the Soft Skills!</div>
 
-        <button class="switch-btn deco"
-        aria-label="hard skill"
-        aria-controls="content"
-        type="button"
-        ><h3 id="t-hard">HARD</h3></button>
-        <button
-        class="switch-btn"
-        aria-label="soft skill"
-        aria-controls="content"
-        type="button"
-        >  <h3 id="t-soft">SOFT</h3></button>
-      
-        <div id="content" aria-live="polite"></div>
+  <button
+    class="switch-btn deco"
+    aria-label="hard skill"
+    aria-controls="content"
+    type="button"><h3 id="t-hard">HARD</h3></button
+  >
+  <button
+    class="switch-btn"
+    aria-label="soft skill"
+    aria-controls="content"
+    type="button"
+  >
+    <h3 id="t-soft">SOFT</h3></button
+  >
 
+  <div id="content" aria-live="polite"></div>
 
-        <template id="content-hard">
-           <HardSkills />
-        </template>
+  <template id="content-hard">
+    <HardSkills />
+  </template>
 
-        <template id="content-soft">
-           <SoftSkills />
-        </template>
-     
+  <template id="content-soft">
+    <SoftSkills />
+  </template>
+</div>
 
-        
-      </div>
-    </div>
-
-    <script>
-
-
+<script>
   const tHard = document.getElementById("t-hard");
   const tSoft = document.getElementById("t-soft");
-    
-    const content = document.getElementById("content");
-      const buttons = document.querySelectorAll(".switch-btn");
 
-    function loadTemplate(id) {
+  const content = document.getElementById("content");
+  const buttons = document.querySelectorAll(".switch-btn");
+
+  function loadTemplate(id) {
     content.innerHTML = "";
     const tpl = document.getElementById(id);
     content.appendChild(tpl.content.cloneNode(true));
   }
 
-  
-
-   
-        tHard.addEventListener("click", () => {
-          loadTemplate("content-hard")
-          tHard.style.color = "transparent";
-  tSoft.style.color = "transparent";
-       tSoft.style.webkitTextStrokeWidth = "1px";
-       tSoft.style.webkitTextStrokeColor = "var(--fo-color)";
-       tHard.style.color = "var(--fo-color)";
-        buttons.forEach(b => b.setAttribute("aria-pressed", "false"));
+  tHard.addEventListener("click", () => {
+    loadTemplate("content-hard");
+    tHard.style.color = "transparent";
+    tSoft.style.color = "transparent";
+    tSoft.style.webkitTextStrokeWidth = "1px";
+    tSoft.style.webkitTextStrokeColor = "var(--fo-color)";
+    tHard.style.color = "var(--fo-color)";
+    buttons.forEach((b) => b.setAttribute("aria-pressed", "false"));
     tHard.setAttribute("aria-pressed", "true");
-        });
+     if(guidaSwitch){guidaSwitch.textContent = "Click here to discover the Soft Skills!";
+       guidaSwitch.style.right = "-10%";
+       guidaSwitch.style.left = "auto";
+       guidaSwitch.style.top = "1%";
+       guidaSwitch.style.borderRadius = "20px  20px 20px 0";}
 
-  tSoft.addEventListener("click", () => {
-    loadTemplate("content-soft")
-  tHard.style.color = "transparent";
-       tHard.style.webkitTextStrokeWidth = "1px";
-       tHard.style.webkitTextStrokeColor = "var(--fo-color)";
-       tSoft.style.color = "var(--fo-color)";
-        buttons.forEach(b => b.setAttribute("aria-pressed", "false"));
-    tSoft.setAttribute("aria-pressed", "true");
   });
 
-      loadTemplate("content-hard");
-  
+  tSoft.addEventListener("click", () => {
+    loadTemplate("content-soft");
+    tHard.style.color = "transparent";
+    tHard.style.webkitTextStrokeWidth = "1px";
+    tHard.style.webkitTextStrokeColor = "var(--fo-color)";
+    tSoft.style.color = "var(--fo-color)";
+    buttons.forEach((b) => b.setAttribute("aria-pressed", "false"));
+    tSoft.setAttribute("aria-pressed", "true");
+      if(guidaSwitch){   guidaSwitch.textContent = "Click here to discover the Hard Skills!";
+     guidaSwitch.style.left = "-10%";
+     guidaSwitch.style.right = "auto";
+     guidaSwitch.style.bottom = "10%";
+     guidaSwitch.style.top = "auto";
+     guidaSwitch.style.borderRadius = "20px 0 20px 20px";}
+  });
 
-
+  loadTemplate("content-hard");
 
   // const contentHard = document.querySelector(".content-hard");
   // const contentSoft = document.querySelector(".content-soft");
@@ -273,7 +268,7 @@ import SoftSkills from "@/components/SoftSkills.astro";
   //     guidaSwitch.style.borderRadius = "20px 0 20px 20px";
   //     contentHard.style.display = "none";
   //     contentSoft.style.display = "block";
-     
+
   //     tHard.style.color = "transparent";
   //     tHard.style.webkitTextStrokeWidth = "1px";
   //     tHard.style.webkitTextStrokeColor = "var(--fo-color)";
@@ -290,7 +285,7 @@ import SoftSkills from "@/components/SoftSkills.astro";
   //     tSoft.style.webkitTextStrokeWidth = "1px";
   //     tSoft.style.webkitTextStrokeColor = "var(--fo-color)";
   //     tHard.style.color = "var(--fo-color)";
-      
+
   //   }
   // }
 
