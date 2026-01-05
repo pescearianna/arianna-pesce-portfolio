@@ -146,7 +146,7 @@ const uniqueId = `project-card-${project.slug}`;
           scale: 0.9;
 
           /* box-shadow: -15px -15px 20px rgba(255, 255, 255, 0.596);  */
-          transition: all 0.3s ease-out;
+          transition: scale 0.3s ease-out;
         }
         .box:hover + .details {
           opacity: 1;
@@ -216,9 +216,9 @@ const uniqueId = `project-card-${project.slug}`;
 
 </style>
 
-<section class="project" data-project-container>
+<section class="project" data-project-container aria-labelledby={`${uniqueId}-title`}>
   <div class="card">
-    <div class="box" id={`${uniqueId}-box`} data-box>
+    <div class="box" tabindex="0" role="group" id={`${uniqueId}-box`} data-box>
       <img id="cover-prj" src={project.data.cover} alt={project.data.title} />
       <div class="light" id={`${uniqueId}-light`} data-light></div>
     </div>
@@ -227,7 +227,7 @@ const uniqueId = `project-card-${project.slug}`;
   <div class="details" id={`${uniqueId}-details`} data-details>
     <p class="tech">{project.data.tech}</p>
     <div class="text">
-      <h2>{project.data.title}</h2>
+      <h2 id={`${uniqueId}-title`}>{project.data.title}</h2>
       <hr />
       <p>{project.data.description}</p>
       <!-- <a href={`/portfolio/${project.slug}`}>Discover more:</a> -->
@@ -235,10 +235,10 @@ const uniqueId = `project-card-${project.slug}`;
     <div class="cta">
       <p>Discover more:</p>
       <div class="links-p">
-        <a href={project.data.github} target="_blank"
-          ><Icon class="icon" name="line-md:github-twotone" size="4rem" /></a
+        <a href={project.data.github} target="_blank" aria-label="Find out this project on Github"
+          ><Icon class="icon" name="line-md:github-twotone" size="4rem"/></a
         >
-        <a href={project.data.app} target="_blank"
+        <a href={project.data.app} target="_blank" aria-label="Go to the web site of this project"
           ><Icon class="icon" name="line-md:link" size="4rem" /></a
         >
       </div>
@@ -258,6 +258,12 @@ const uniqueId = `project-card-${project.slug}`;
       const details = container.querySelector('[data-details]');
 
       if (!box || !light) return;
+      
+        const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+
+      if (prefersReducedMotion) return;
 
       // --- EFFETTO MOUSE (Solo se non è touch) ---
       if (!isTouch) {
@@ -278,32 +284,62 @@ const uniqueId = `project-card-${project.slug}`;
         });
 
         box.addEventListener("mouseleave", () => {
-          box.style.transform = `rotateX(0deg) rotateY(0deg) scale(0.7)`;
+          box.style.transform = `rotateX(0deg) rotateY(0deg) scale(0.9)`;
+          box.style.transition = `scale 0.3s ease-out`
           light.style.background = "";
           // details.style.opacity = "0";
         });
+
+        box.addEventListener("focus", () => {
+            details.style.opacity = "1";         
+        });
+
+// box.addEventListener("blur", () => {
+//   box.style.transform = "";
+//   light.style.background = "";
+// });
       }
 
       // --- EFFETTO GIROSCOPIO (Per Mobile) ---
-      if (isTouch && window.DeviceOrientationEvent) {
-        window.addEventListener("deviceorientation", (e) => {
-          // beta: inclinazione avanti/dietro (-180 a 180)
-          // gamma: inclinazione sinistra/destra (-90 a 90)
-          const tiltX = Math.min(Math.max(e.beta, -30), 30) / 2; 
-          const tiltY = Math.min(Math.max(e.gamma, -30), 30) / 2;
 
-          box.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+
+//       if (
+//   isTouch &&
+//   typeof DeviceOrientationEvent?.requestPermission === "function"
+// ) {
+//   DeviceOrientationEvent.requestPermission().then(permission => {
+//     if (permission === "granted") {
+//       // attiva gyro
+//        const tiltX = Math.min(Math.max(e.beta, -30), 30) / 2; 
+//           const tiltY = Math.min(Math.max(e.gamma, -30), 30) / 2;
+
+//           box.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
           
-          // Muoviamo la luce in base all'inclinazione
-          const lightX = 50 + (tiltY * 2);
-          const lightY = 50 + (tiltX * 2);
-          light.style.background = `radial-gradient(circle at ${lightX}% ${lightY}%, rgba(255,255,255,0.2), transparent 80%)`;
-        });
-      }
+//           // Muoviamo la luce in base all'inclinazione
+//           const lightX = 50 + (tiltY * 2);
+//           const lightY = 50 + (tiltX * 2);
+//           light.style.background = `radial-gradient(circle at ${lightX}% ${lightY}%, rgba(255,255,255,0.2), transparent 80%)`;
+//     }
+//   });
+// }
+      // if (isTouch && window.DeviceOrientationEvent) {
+      //   window.addEventListener("deviceorientation", (e) => {
+      //     // beta: inclinazione avanti/dietro (-180 a 180)
+      //     // gamma: inclinazione sinistra/destra (-90 a 90)
+      //     const tiltX = Math.min(Math.max(e.beta, -30), 30) / 2; 
+      //     const tiltY = Math.min(Math.max(e.gamma, -30), 30) / 2;
+
+      //     box.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+          
+      //     // Muoviamo la luce in base all'inclinazione
+      //     const lightX = 50 + (tiltY * 2);
+      //     const lightY = 50 + (tiltX * 2);
+      //     light.style.background = `radial-gradient(circle at ${lightX}% ${lightY}%, rgba(255,255,255,0.2), transparent 80%)`;
+      //   });
+      // }
     });
   };
 
-  // Esegui all'avvio e dopo eventuali navigazioni (se usi View Transitions)
   initProjectEffect();
   document.addEventListener('astro:after-swap', initProjectEffect);
 </script>

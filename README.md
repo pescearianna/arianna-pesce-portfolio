@@ -1,43 +1,50 @@
-# Astro Starter Kit: Minimal
+<div align='center'>
+    <img src="./src/assets/profile.png" alt="" style='margin: 20px auto; width:100px'>
+        <h1>Celestial | React Project - Arianna Pesce</h1>   
+</div>
 
-```sh
-npm create astro@latest -- --template minimal
-```
+<div align='center'>
+<p>
+  <a href="#description">Description</a> •
+ 
+<a href="#technologies-Used">Technologies Used</a> •
+  <a href="#contact">Contact</a>
+</p>
+</div>
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-## 🚀 Project Structure
 
-Inside of your Astro project, you'll see the following folders and files:
+<br>
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Description  
 
-Any static assets, like images, can be placed in the `public/` directory.
+I'm super proud to present my digital CV and my personal portfolio. Here you can discover more about me and find all my works.
 
-## 🧞 Commands
+--> [Visit the site]()
 
-All commands are run from the root of the project, from a terminal:
+<br>
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## ✨ Main Features
 
-## 👀 Want to learn more?
+- 📱 Responsive design: accessible and enjoyable on any device.
+- 🧭 Smooth user experience: minimal and intuitive interface designed to support focus and calm.
+- 🧩 Organized code structure: clear, modular components that are easy to extend.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+---  
+
+## Technologies Used  
+ 
+- Astro
+- HTML5 / CSS3
+- JavaScript (ES6+)
+
+---  
+
+## Contact
+
+> GitHub [@pescearianna](https://github.com/pescearianna) &nbsp;&middot;&nbsp;
+> LinkedIn [Arianna Pesce](https://www.linkedin.com/in/ariannapesce/)
+
+---
