@@ -5,7 +5,7 @@ const projectsCollection = defineCollection({
     title: z.string(),
     description: z.string(),
     cover: image(), // cover
-    screen: image(), // screen
+    // screen: image(), // screen
     tech: z.string(z.string()).optional(), // tag o tecnologie
     github: z.string().optional(), // link github
     app: z.string().optional(), // link app
