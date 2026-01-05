@@ -375,6 +375,7 @@ const title = Astro.props.title;
 </header>
 
 <script>
+  const setupMenu = () => {
   document.addEventListener("DOMContentLoaded", () => {
     const buttonMenu = document.querySelector("#mobile-first");
     const containerMenu = document.querySelector(".container");
@@ -389,4 +390,7 @@ const title = Astro.props.title;
       }
     });
   });
+};
+
+  document.addEventListener('astro:page-load', setupMenu);
 </script>
