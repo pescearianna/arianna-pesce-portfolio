@@ -3,10 +3,20 @@ import HardSkills from "@/components/HardSkills.astro";
 import SoftSkills from "@/components/SoftSkills.astro";
 
 ---
-<style>
+<style lang="scss">
+
+ .switch-btn{
+    all:unset;  
+    
+    &:focus-visible {
+  outline: 3px solid var(--fo-color); /* O il colore che preferisci */
+  outline-offset: 4px;
+  box-shadow: 0 0 10px var(--fo-color);
+}
+  }
 
   #t-hard {
-        
+
         text-align: center;
         color: var(--fo-color);
         
@@ -127,16 +137,12 @@ import SoftSkills from "@/components/SoftSkills.astro";
     .guida-switch{
       display: none;
     }
-    #t-hard, #t-soft{
+    .switch-btn{
       display: inline-block;
-      width: 46%;
-      font-size: 2rem;
-      text-align: center;
-      
+    width: 48%;
     }
-    #t-hard{
-      position: relative;
-      width: 52%;
+    .deco{
+      position:relative;
       &:after{
       content: "";
       position: absolute;
@@ -149,6 +155,13 @@ import SoftSkills from "@/components/SoftSkills.astro";
       
     }
     }
+    #t-hard, #t-soft{
+      text-align: center;
+      font-size: 2rem;
+      text-align: center;
+      
+    }
+    
     #content{
       border: 1px solid var(--fo-color);
         padding: 1rem;
@@ -170,9 +183,19 @@ import SoftSkills from "@/components/SoftSkills.astro";
  <div class="skill-container">
         <div class="guida-switch">Click here to discover the Soft Skills!</div>
 
-        <h3 id="t-hard">HARD</h3>
-        <h3 id="t-soft">SOFT</h3>
-        <div id="content"></div>
+        <button class="switch-btn deco"
+        aria-label="hard skill"
+        aria-controls="content"
+        type="button"
+        ><h3 id="t-hard">HARD</h3></button>
+        <button
+        class="switch-btn"
+        aria-label="soft skill"
+        aria-controls="content"
+        type="button"
+        >  <h3 id="t-soft">SOFT</h3></button>
+      
+        <div id="content" aria-live="polite"></div>
 
 
         <template id="content-hard">
@@ -182,25 +205,20 @@ import SoftSkills from "@/components/SoftSkills.astro";
         <template id="content-soft">
            <SoftSkills />
         </template>
-        <!-- <div class="content-hard">
-          
-          <HardSkills />
-        </div>
-        <div class="content-soft">
-         <SoftSkills />
-        </div> -->
+     
 
         
       </div>
     </div>
 
     <script>
-import { sequence } from "astro:middleware";
+
 
   const tHard = document.getElementById("t-hard");
   const tSoft = document.getElementById("t-soft");
     
     const content = document.getElementById("content");
+      const buttons = document.querySelectorAll(".switch-btn");
 
     function loadTemplate(id) {
     content.innerHTML = "";
@@ -218,6 +236,8 @@ import { sequence } from "astro:middleware";
        tSoft.style.webkitTextStrokeWidth = "1px";
        tSoft.style.webkitTextStrokeColor = "var(--fo-color)";
        tHard.style.color = "var(--fo-color)";
+        buttons.forEach(b => b.setAttribute("aria-pressed", "false"));
+    tHard.setAttribute("aria-pressed", "true");
         });
 
   tSoft.addEventListener("click", () => {
@@ -226,6 +246,8 @@ import { sequence } from "astro:middleware";
        tHard.style.webkitTextStrokeWidth = "1px";
        tHard.style.webkitTextStrokeColor = "var(--fo-color)";
        tSoft.style.color = "var(--fo-color)";
+        buttons.forEach(b => b.setAttribute("aria-pressed", "false"));
+    tSoft.setAttribute("aria-pressed", "true");
   });
 
       loadTemplate("content-hard");

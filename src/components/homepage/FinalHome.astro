@@ -89,6 +89,9 @@ import { Icon } from "astro-icon/components";
   
       }
     }
+    .controls{
+      gap:1rem;
+    }
   }
 }
 </style>
@@ -104,8 +107,8 @@ import { Icon } from "astro-icon/components";
   </div>
 
   <div class="controls">
-    <a href="/contact"><Button text="Send me a message!" /></a>
-    <a href="/portfolio/"><Button text="See my latest works!" /></a>
+    <a href="/contact"><Button text="Send me a message!" aria-label="Contact me: send me a message"/></a>
+    <a href="/portfolio/"><Button text="See my latest works!" aria-label="See my portfolio"/></a>
   </div>
   <div class="social">
     <a href="https://www.linkedin.com/in/ariannapesce" target="_blank"

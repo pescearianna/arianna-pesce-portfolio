@@ -97,37 +97,38 @@ const title = Astro.props.title;
             color: inherit;
           }
         }
-        span {
-          position: absolute;
-          bottom: 15px;
-          left: 0px;
-          width: 80px;
-          height: 7%;
-          background: linear-gradient(
-            90deg,
-            var(--fo-color) 0%,
-            var(--th-color) 100%
-          );
-          border-radius: 8px;
-          transition: 0.5s;
-          opacity: 0;
-          visibility: hidden;
-          z-index: 2;
-        }
-        li:hover ~ span {
-          opacity: 1;
-          visibility: visible;
-        }
+        //  span {
+          
+        //   position: absolute;
+        //   bottom: 15px;
+        //   left: 0px;
+        //   width: 80px;
+        //   height: 7%;
+        //   background: linear-gradient(
+        //     90deg,
+        //     var(--fo-color) 0%,
+        //     var(--th-color) 100%
+        //   );
+        //   border-radius: 8px;
+        //   transition: 0.5s;
+        //   opacity: 0;
+        //   visibility: hidden;
+        //   z-index: 2;
+        // }
+        // li:hover ~ span {
+        //   opacity: 1;
+        //   visibility: visible;
+        // }
 
-        li:nth-child(1):hover ~ span {
-          left: 10px;
-        }
-        li:nth-child(2):hover ~ span {
-          left: 110px;
-        }
-        li:nth-child(3):hover ~ span {
-          left: 210px;
-        }
+        // li:nth-child(1):hover ~ span {
+        //   left: 10px;
+        // }
+        // li:nth-child(2):hover ~ span {
+        //   left: 110px;
+        // }
+        // li:nth-child(3):hover ~ span {
+        //   left: 210px;
+        // }
       }
       .menu {
         clear: none;
@@ -163,6 +164,38 @@ const title = Astro.props.title;
    @media screen and (min-width: 1220px){
       header{
         padding: 0.1rem 8rem;
+        span {
+          position: absolute;
+          bottom: 15px;
+          left: 0px;
+          width: 80px;
+          height: 7%;
+          background: linear-gradient(
+            90deg,
+            var(--fo-color) 0%,
+            var(--th-color) 100%
+          );
+          border-radius: 8px;
+          transition: 0.5s;
+          opacity: 0;
+          visibility: hidden;
+          z-index: 2;
+        }
+        li:hover ~ span {
+          opacity: 1;
+          visibility: visible;
+        }
+
+        li:nth-child(1):hover ~ span {
+          left: 10px;
+        }
+        li:nth-child(2):hover ~ span {
+          left: 110px;
+        }
+        li:nth-child(3):hover ~ span {
+          left: 210px;
+        }
+      
       }
     }
 
@@ -318,6 +351,7 @@ const title = Astro.props.title;
     <div class="social">
       <a
         href="https://www.linkedin.com/in/ariannapesce/"
+        aria-label="Follow me on LinkedIn"
         target="_blank"
         rel="noopener"
         ><i
@@ -329,14 +363,14 @@ const title = Astro.props.title;
           /></i
         ></a
       >
-      <a href="https://github.com/pescearianna" target="_blank" rel="noopener"
+      <a href="https://github.com/pescearianna" aria-label="Follow me on Github" target="_blank" rel="noopener"
         ><i><Icon class="icon" name="line-md:github-loop" size="3rem" /></i></a
       >
     </div>
   </div>
   <button id="mobile-first">
-    <Icon class="icon-menu" name="ic:round-menu" />
-    <Icon class="icon-close" name="ic:round-close" />
+    <Icon class="icon-menu" name="ic:round-menu" aria-label="Open Menu"/>
+    <Icon class="icon-close" name="ic:round-close" aria-label="Close Menu"/>
   </button>
 </header>
 

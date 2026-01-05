@@ -1,16 +1,15 @@
 ---
 import { Image } from "astro:assets";
-import langme from "@/assets/lang-me.png";
+
 import profile from "@/assets/profile.png";
 import education from "@/assets/education.png";
 import experience from "@/assets/experience.png";
-import decoration from "@/assets/decoration-flip.jpg";
-const decorationImage = `url(${decoration})`;
+
 import funnyme from "@/assets/lang-me.png";
-import { Icon } from "astro-icon/components";
+
 ---
 
-<style>
+<style lang="scss">
   .container {
     display: flex;
     flex-direction: column;
@@ -30,6 +29,7 @@ import { Icon } from "astro-icon/components";
 
       button {
         all: unset;
+     
         background-color: var(--fo-color);
         border-radius: 50%;
         margin: 0 1rem;
@@ -56,6 +56,11 @@ import { Icon } from "astro-icon/components";
           display: none;
         }
       }
+      button:focus-visible {
+  outline: 3px solid var(--fo-color); /* O il colore che preferisci */
+  outline-offset: 4px;
+  box-shadow: 0 0 10px var(--fo-color);
+}
       .img-step {
         width: 4rem;
         height: 4rem;
@@ -67,10 +72,11 @@ import { Icon } from "astro-icon/components";
           opacity 0.3s ease,
           transform 0.3s ease;
       }
+      
       .step-profile:hover {
         background-color: transparent;
       }
-      .step-profile:hover .img-profile {
+      .step-profile:hover .img-profile, .step-profile:focus-within .img-profile {
         opacity: 1;
         z-index: 10;
         transform: scale(1.3);
@@ -78,7 +84,7 @@ import { Icon } from "astro-icon/components";
       .step-education:hover {
         background-color: transparent;
       }
-      .step-education:hover .img-education {
+      .step-education:hover .img-education, .step-education:focus-within .img-education{
         opacity: 1;
         z-index: 10;
         transform: scale(1.3);
@@ -86,7 +92,7 @@ import { Icon } from "astro-icon/components";
       .step-experience:hover {
         background-color: transparent;
       }
-      .step-experience:hover .img-experience {
+      .step-experience:hover .img-experience, .step-experience:focus-within .img-experience {
         opacity: 1;
         z-index: 10;
         transform: scale(1.3);
@@ -333,27 +339,40 @@ import { Icon } from "astro-icon/components";
 <div class="container">
   <fieldset class="menu">
     <legend>Know more about me in 3 steps</legend>
-    <button class="step step-profile" data-step="0"
-      >1<Image class="img-step img-profile" alt="profile" src={profile} />
-      <button class="step step-education" data-step="1"
-        >2<Image
-          class="img-step img-education"
-          alt="profile"
-          src={education}
-        /></button
-      >
-      <button class="step step-experience" data-step="2"
-        >3<Image
-          class="img-step img-experience"
-          alt="profile"
-          src={experience}
-        /></button
-      >
-    </button>
-  </fieldset>
-  <h3 id="title"></h3>
+   <div role="tablist" style="display: flex; gap: 10px;"> <button 
+        class="step step-profile" 
+        data-step="0" 
+        aria-label="Step 1: Who I am"
+        aria-controls="desc"
+        type="button"
+        tabindex="0">
+        1 <Image class="img-step img-profile" alt="" src={profile} />
+      </button>
 
-  <div id="desc"></div>
+      <button 
+        class="step step-education" 
+        data-step="1" 
+        aria-label="Step 2: Education"
+        aria-controls="desc"
+        type="button"
+        tabindex="0">
+        2 <Image class="img-step img-education" alt="" src={education} />
+      </button>
+
+      <button 
+        class="step step-experience" 
+        data-step="2" 
+        aria-label="Step 3: Experience"
+        aria-controls="desc"
+        type="button"
+        tabindex="0">
+        3 <Image class="img-step img-experience" alt="" src={experience} />
+      </button>
+    </div>
+  </fieldset>
+  <h3 id="title" aria-live="polite"></h3>
+
+  <div id="desc" aria-live="polite"></div>
 
   <template id="desc-0">
     <div class="wrap-description">
@@ -376,7 +395,7 @@ import { Icon } from "astro-icon/components";
         </p>
       </div>
 
-      <Image class="pointer" src={funnyme} alt="arianna-pesce-funny" />
+      <Image class="pointer" src={funnyme} alt="decorative image arianna pesce" aria-hidden="true" />
     </div>
   </template>
 
@@ -471,15 +490,29 @@ import { Icon } from "astro-icon/components";
 
     const titles = ["WHO I AM", "EDUCATION", "EXPERIENCE"];
 
-    buttons.forEach((btn) => {
-      btn.addEventListener("mouseenter", () => {
-        const i = btn.dataset.step;
+function updateStep(btn){
+ const i = btn.dataset.step;
         title.textContent = titles[i];
 
         desc.innerHTML = "";
         const tpl = document.getElementById(`desc-${i}`);
-        desc.appendChild(tpl.content.cloneNode(true));
+        if (tpl) {
+      desc.appendChild(tpl.content.cloneNode(true));
+    }
+        buttons.forEach(b => b.setAttribute("aria-pressed", "false"));
+    btn.setAttribute("aria-pressed", "true");
+}
+
+
+  buttons.forEach((btn) => { 
+        btn.addEventListener("click", () => updateStep(btn));
+      btn.addEventListener("mouseenter", () => updateStep(btn));
+     
       });
-    });
+       
+      updateStep(buttons[0]);
+       
+    
+    
   </script>
 
