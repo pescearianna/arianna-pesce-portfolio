@@ -1,279 +1,276 @@
 ---
-import BaseLayouts from '@/layouts/BaseLayouts.astro';
-import Header from '@/components/Header.astro';
-import Footer from '@/components/Footer.astro';
-import Button from '@/components/Button.astro';
-import { Icon } from 'astro-icon/components';
-
-
+import BaseLayouts from "@/layouts/BaseLayouts.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Button from "@/components/Button.astro";
+import { Icon } from "astro-icon/components";
 
 const title = "Arianna Pesce | Contact";
 const description = "Want to work together? Contact me!";
-
-
 ---
 
 <style lang="scss">
-  
-	.contact-container {
-  height: 80vh;
-  max-width: 1220px;
-  width:100%;
-  margin:auto;
-  padding:3rem 0;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-evenly;
-  /*occhio: contenitori right-left intercambiati*/
-  .contact-left {
-	height: 100%;
-    width: 45%;
-    
-    label{
-		color: var(--text-color);
-      margin: 1.5rem 0 0.5rem;
-      font-size: 1.2rem;
-      span{
-        color:rgb(196, 0, 0);
-      }
-    }
-    .c-inputs {
-      width: 100%;
-      height: 40px;
-      border: none;
-      outline: none;
-      padding-left: 25px;
-      font-weight: 500;
-      color: black;
-      border-radius: 10px;
-      &:focus {
-        border: 2px solid var(--fo-color);
-      }
-    }
-    textarea {
-		
-      height: 120px;
-      padding-top: 15px;
-      border-radius: 10px;
-      &:focus {
-        border: 2px solid var(--fo-color);
-      }
-    }
-	.sr{
-		font-size: 0.7rem;
-		color: rgb(216, 216, 216);
-		margin-bottom: 0.5rem;
-	}
-   
-  }
-  .contact-right {
-    width: 30%;
+  .contact-container {
+    min-height: 80vh;
+    max-width: 1220px;
+    width: 100%;
+    margin: auto;
+    padding: 3rem 0;
     display: flex;
-    flex-direction: column;
     align-items: flex-start;
-    
+    justify-content: space-evenly;
+    /*occhio: contenitori right-left intercambiati*/
+    .contact-left {
+      height: 100%;
+      width: 45%;
+
+      label {
+        color: var(--text-color);
+        margin: 1.5rem 0 0.5rem;
+        font-size: 1.2rem;
+        span {
+          color: rgb(196, 0, 0);
+        }
+      }
+      .c-inputs {
+        width: 100%;
+        height: 40px;
+        border: none;
+        outline: none;
+        padding-left: 25px;
+        font-weight: 500;
+        color: black;
+        border-radius: 10px;
+        &:focus {
+          border: 2px solid var(--fo-color);
+        }
+      }
+      textarea {
+        height: 120px;
+        padding-top: 15px;
+        border-radius: 10px;
+        &:focus {
+          border: 2px solid var(--fo-color);
+        }
+      }
+      .sr {
+        font-size: 0.7rem;
+        color: rgb(216, 216, 216);
+        margin-bottom: 0.5rem;
+      }
+    }
+    .contact-right {
+      width: 30%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
       h1 {
         font-weight: 800;
         color: var(--text-color);
         font-size: 40px;
         margin-bottom: 5px;
-    
       }
       hr {
-		width: 65%;
+        width: 65%;
         height: 1px;
         border: 3px solid var(--th-color);
         border-radius: 10px;
         margin-bottom: 20px;
       }
-    
-    .text-info {
-      .info-c {
-		padding: 2rem 0;
-        display: flex;
-		flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        align-self: center;
-        .icon {
-          color: var(--text-color);
-          font-size: 6rem;
-		  
-        }
-        p {
-          margin-bottom: 1rem;
-		  font-size: 1.2rem;
-		  text-align: center;
+
+      .text-info {
+        .info-c {
+          padding: 2rem 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: center;
+          align-self: center;
+          .icon {
+            color: var(--text-color);
+            font-size: 6rem;
+          }
+          p {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            text-align: center;
+          }
         }
       }
     }
   }
-}
 
-#success-message{
-  padding: 0 1rem 0;
-  color: var(--th-color);
-}
+  #success-message {
+    padding: 0 1rem 0;
+    color: var(--th-color);
+  }
 
-@media (max-width: 960px) {
-  .contact-container {
-    width: 100%;
-    flex-direction: column;
-    height: auto;
-    padding: 0.5rem 0;
-    .contact-left {
+  @media (max-width: 960px) {
+    .contact-container {
       width: 100%;
-      padding: 1rem 3rem;
-      form .send-message{
-         width:100%;
+      flex-direction: column;
+      height: auto;
+      padding: 0.5rem 0;
+      .contact-left {
+        width: 100%;
+        padding: 1rem 2rem;
+        form .send-message {
+          width: 100%;
+        }
+      }
+      .contact-right {
+        width: 100%;
+        padding: 1rem 2rem;
       }
     }
-    .contact-right {
-      width: 100%;
-      padding: 1rem 3rem;
-    }
-    
   }
-}
 </style>
 
 <BaseLayouts title={title} description={description}>
+  <Header />
+  <main>
+    <div class="contact-container">
+      <div class="contact-right">
+        <h1
+          role="heading"
+          aria-level="1"
+          aria-label="Get in touch! Send me a message through this form"
+          transition:name="git-title"
+        >
+          Get in touch!
+        </h1>
+        <hr />
 
-<Header/>
-	<main>
-		<div class="contact-container">
-			<div class="contact-right">
-          		
-            		<h1 role="heading" aria-level="1" aria-label="Get in touch! Send me a message through this form" transition:name="git-title">Get in touch!</h1>
-            <hr />
-          
-          <div class="text-info">
-            <div class="info-c">
-             
-              <p>
-                Reach out to say hello or discuss your project.👋 </p>  <p>
-				I&#39;d be happy
-                to meet for coffee or connect remotely.
-              </p> 
-			  <Icon class="icon" name="ic:round-coffee"/>
-            </div>
+        <div class="text-info">
+          <div class="info-c">
+            <p>Reach out to say hello or discuss your project.👋</p>
+            <p>I&#39;d be happy to meet for coffee or connect remotely.</p>
+            <Icon class="icon" name="ic:round-coffee" />
           </div>
         </div>
-		 
-
-        <div class="contact-left">
-          <form id="contact-form" method="post" autocomplete="on" aria-label="Contact form">
-            <label for="name"><span>*</span>Name:</label>
-            <input
-              type="text"
-              id="name"
-              name="user_name"
-              placeholder="John Doe"
-              class="c-inputs"
-              required
-              aria-required="true"
-              aria-label="Your name"
-              aria-describedby="namesronly"
-            />
-            <p id="namesronly" class="sr">Enter your full name</p>
-			
-            <label for="email"><span>*</span>Email:</label>
-            <input
-              type="email"
-              id="email"
-              name="user_email"
-              placeholder="johndoe@gmail.com"
-              class="c-inputs"
-              required
-              aria-required="true"
-              aria-label="Your email"
-              aria-describedby="emailsronly"
-            />
-            <p id="emailsronly" class="sr">Enter a valid email adress</p>
-            <label for="message"><span>*</span>Message:</label>
-            <textarea
-              id="message"
-              name="message"
-              placeholder="Write me a message..."
-              class="c-inputs"
-              style="height: 150px"
-              required
-              aria-required="true"
-              aria-label="Your message to send"
-              aria-describedby="messagesronly"
-            ></textarea>
-            <p id="messagesronly">Enter your message for me, I would be happy to respond to you as soon as possible 😊 </p>
-            <Button class="send-message" text={`Send message`} type="submit" aria-label="Send your message"/> <span id="success-message"></span>
-          </form>
-        </div>
-        
       </div>
-		
 
-	</main>
+      <div class="contact-left">
+        <form
+          id="contact-form"
+          method="post"
+          autocomplete="on"
+          aria-label="Contact form"
+        >
+          <label for="name"><span>*</span>Name:</label>
+          <input
+            type="text"
+            id="name"
+            name="user_name"
+            placeholder="John Doe"
+            class="c-inputs"
+            required
+            aria-required="true"
+            aria-label="Your name"
+            aria-describedby="namesronly"
+          />
+          <p id="namesronly" class="sr">Enter your full name</p>
 
+          <label for="email"><span>*</span>Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="user_email"
+            placeholder="johndoe@gmail.com"
+            class="c-inputs"
+            required
+            aria-required="true"
+            aria-label="Your email"
+            aria-describedby="emailsronly"
+          />
+          <p id="emailsronly" class="sr">Enter a valid email adress</p>
+          <label for="message"><span>*</span>Message:</label>
+          <textarea
+            id="message"
+            name="message"
+            placeholder="Write me a message..."
+            class="c-inputs"
+            style="height: 150px"
+            required
+            aria-required="true"
+            aria-label="Your message to send"
+            aria-describedby="messagesronly"></textarea>
+          <p id="messagesronly">
+            Enter your message for me, I would be happy to respond to you as
+            soon as possible 😊
+          </p>
+          <Button
+            class="send-message"
+            text={`Send message`}
+            type="submit"
+            aria-label="Send your message"
+          />
+          <span id="success-message"></span>
+        </form>
+      </div>
+    </div>
+  </main>
 
-<Footer/>
+  <Footer />
 </BaseLayouts>
 
- <script>
-import emailjs from '@emailjs/browser';
-  import confetti from 'canvas-confetti';
+<script>
+  import emailjs from "@emailjs/browser";
+  import confetti from "canvas-confetti";
 
-emailjs.init(import.meta.env.PUBLIC_EMAILJS_KEY);
+  emailjs.init(import.meta.env.PUBLIC_EMAILJS_KEY);
 
-
-console.log("Script caricato correttamente");
+  console.log("Script caricato correttamente");
 
   const form = document.getElementById("contact-form");
   const successMessage = document.getElementById("success-message");
   const submitBtn = form?.querySelector('button[type="submit"]');
 
-document.getElementById("contact-form").addEventListener("submit", function (event) {
-           event.preventDefault();
-
-   if (form) {
-    form.addEventListener("submit", function (event) {
+  document
+    .getElementById("contact-form")
+    .addEventListener("submit", function (event) {
       event.preventDefault();
 
-      
-      if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.innerText = "Sending message...";
-      }
-
-      emailjs.sendForm("service_zzfanem", "template_cm9b4zb", this)
-        .then(() => {
-     
-          confetti();
-          this.reset();
-
-          if (successMessage) {
-            successMessage.innerText = "Message sent with success! ✨";
-          }
+      if (form) {
+        form.addEventListener("submit", function (event) {
+          event.preventDefault();
 
           if (submitBtn) {
-            submitBtn.innerText = "Success!";
+            submitBtn.disabled = true;
+            submitBtn.innerText = "Sending message...";
           }
-          
-          
-          setTimeout(() => {
-            if (successMessage) successMessage.innerText = "";
-            if (submitBtn) {
-              submitBtn.disabled = false;
-              submitBtn.innerText = "Send message";
-            }
-          }, 5000);
-        })
-        .catch((error) => {
-          alert("Errore nell'invio: " + JSON.stringify(error));
-          if (submitBtn) {
-            submitBtn.disabled = false;
-            submitBtn.innerText = "Send message";
-          }
+
+          emailjs
+            .sendForm("service_zzfanem", "template_cm9b4zb", this)
+            .then(() => {
+              confetti();
+              this.reset();
+
+              if (successMessage) {
+                successMessage.innerText = "Message sent with success! ✨";
+              }
+
+              if (submitBtn) {
+                submitBtn.innerText = "Success!";
+              }
+
+              setTimeout(() => {
+                if (successMessage) successMessage.innerText = "";
+                if (submitBtn) {
+                  submitBtn.disabled = false;
+                  submitBtn.innerText = "Send message";
+                }
+              }, 5000);
+            })
+            .catch((error) => {
+              alert("Errore nell'invio: " + JSON.stringify(error));
+              if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.innerText = "Send message";
+              }
+            });
         });
+      }
     });
-  }})
-
 </script>
-  

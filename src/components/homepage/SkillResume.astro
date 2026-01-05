@@ -4,8 +4,28 @@ import SoftSkills from "@/components/SoftSkills.astro";
 
 ---
 <style>
+
+  #t-hard {
+        
+        text-align: center;
+        color: var(--fo-color);
+        
+        background-color: var(--bg-color);
+        
+      }
+
+       #t-soft {
+        
+        text-align: center;
+        
+        color: transparent;
+        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: var(--fo-color);
+        text-stroke-width: 1px; /* fallbacck */
+        text-stroke-color: var(--fo-color);
+      }
   
- @media screen and (min-width: 1000px){
+ @media screen and (min-width: 992px){
   .skill-container {
       position: relative;
       height: 90vh;
@@ -56,19 +76,16 @@ import SoftSkills from "@/components/SoftSkills.astro";
         text-stroke-width: 1px; /* fallbacck */
         text-stroke-color: var(--fo-color);
       }
-      .content-hard,
-      .content-soft {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
+     
+      #content {
+      
         border: 1px solid var(--fo-color);
-        width: 71%;
-        height: 80vh;
+        
         z-index: 1;
-        padding: 2rem 3rem;
+        
       }
 
-      .content-hard{
+      #content-hard{
          background: linear-gradient(
           90deg,
           rgba(255, 255, 255, 0) 85%,
@@ -76,7 +93,7 @@ import SoftSkills from "@/components/SoftSkills.astro";
         );
       }
 
-      .content-soft {
+      #content-soft {
         display: none;
          background: linear-gradient(
           90deg,
@@ -94,13 +111,57 @@ import SoftSkills from "@/components/SoftSkills.astro";
     }
  }
 
- @media screen and (max-width: 600px){
+ @media screen and (min-width: 992px){
+ #content {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 71%;
+        height: 80vh;
+         padding: 2rem 3rem;
+      }
+ }
+
+ @media screen and (max-width: 992px){
   .skill-container{
-    #t-hard, #t-soft{
-      background-color: red;
-      width: 49%;
-      font-size: 3rem;
+    .guida-switch{
+      display: none;
     }
+    #t-hard, #t-soft{
+      display: inline-block;
+      width: 46%;
+      font-size: 2rem;
+      text-align: center;
+      
+    }
+    #t-hard{
+      position: relative;
+      width: 52%;
+      &:after{
+      content: "";
+      position: absolute;
+          top: 50%;
+          right: 0;
+          width: 4px;
+          height: 3rem;
+          background: var(--fo-color);
+          transform: translateY(-50%);
+      
+    }
+    }
+    #content{
+      border: 1px solid var(--fo-color);
+        padding: 1rem;
+        text-align: center;
+    }
+  }
+ }
+
+ @keyframes shake {
+  from {
+    background-color: red;
+  } to {
+    background-color: green;
   }
  }
 
@@ -111,65 +172,113 @@ import SoftSkills from "@/components/SoftSkills.astro";
 
         <h3 id="t-hard">HARD</h3>
         <h3 id="t-soft">SOFT</h3>
-        <div class="content-hard">
+        <div id="content"></div>
+
+
+        <template id="content-hard">
+           <HardSkills />
+        </template>
+
+        <template id="content-soft">
+           <SoftSkills />
+        </template>
+        <!-- <div class="content-hard">
           
           <HardSkills />
         </div>
         <div class="content-soft">
          <SoftSkills />
-        </div>
+        </div> -->
 
         
       </div>
     </div>
 
     <script>
-  const contentHard = document.querySelector(".content-hard");
-  const contentSoft = document.querySelector(".content-soft");
-  const guidaSwitch = document.querySelector(".guida-switch");
+import { sequence } from "astro:middleware";
+
   const tHard = document.getElementById("t-hard");
   const tSoft = document.getElementById("t-soft");
+    
+    const content = document.getElementById("content");
 
-  let isSoftMode = false; // Tieni traccia dello stato attuale
-
-  function change(isSoftMode: boolean) {
-    if (isSoftMode === true) {
-      guidaSwitch.textContent = "Click here to discover the Hard Skills!";
-      guidaSwitch.style.left = "-10%";
-      guidaSwitch.style.right = "auto";
-      guidaSwitch.style.bottom = "10%";
-      guidaSwitch.style.top = "auto";
-      guidaSwitch.style.borderRadius = "20px 0 20px 20px";
-      contentHard.style.display = "none";
-      contentSoft.style.display = "block";
-     
-      tHard.style.color = "transparent";
-      tHard.style.webkitTextStrokeWidth = "1px";
-      tHard.style.webkitTextStrokeColor = "var(--fo-color)";
-      tSoft.style.color = "var(--fo-color)";
-    } else {
-      guidaSwitch.textContent = "Click here to discover the Soft Skills!";
-      guidaSwitch.style.right = "-10%";
-      guidaSwitch.style.left = "auto";
-      guidaSwitch.style.top = "1%";
-      guidaSwitch.style.borderRadius = "20px  20px 20px 0";
-      contentHard.style.display = "block";
-      contentSoft.style.display = "none";
-      tSoft.style.color = "transparent";
-      tSoft.style.webkitTextStrokeWidth = "1px";
-      tSoft.style.webkitTextStrokeColor = "var(--fo-color)";
-      tHard.style.color = "var(--fo-color)";
-      
-    }
+    function loadTemplate(id) {
+    content.innerHTML = "";
+    const tpl = document.getElementById(id);
+    content.appendChild(tpl.content.cloneNode(true));
   }
 
-  tSoft?.addEventListener("click", () => {
-    isSoftMode = true;
-    change(isSoftMode);
+  
+
+   
+        tHard.addEventListener("click", () => {
+          loadTemplate("content-hard")
+          tHard.style.color = "transparent";
+  tSoft.style.color = "transparent";
+       tSoft.style.webkitTextStrokeWidth = "1px";
+       tSoft.style.webkitTextStrokeColor = "var(--fo-color)";
+       tHard.style.color = "var(--fo-color)";
+        });
+
+  tSoft.addEventListener("click", () => {
+    loadTemplate("content-soft")
+  tHard.style.color = "transparent";
+       tHard.style.webkitTextStrokeWidth = "1px";
+       tHard.style.webkitTextStrokeColor = "var(--fo-color)";
+       tSoft.style.color = "var(--fo-color)";
   });
 
-  tHard?.addEventListener("click", () => {
-    isSoftMode = false;
-    change(isSoftMode);
-  });
+      loadTemplate("content-hard");
+  
+
+
+
+  // const contentHard = document.querySelector(".content-hard");
+  // const contentSoft = document.querySelector(".content-soft");
+  // const guidaSwitch = document.querySelector(".guida-switch");
+  // const tHard = document.getElementById("t-hard");
+  // const tSoft = document.getElementById("t-soft");
+
+  // let isSoftMode = false; // Tieni traccia dello stato attuale
+
+  // function change(isSoftMode: boolean) {
+  //   if (isSoftMode === true) {
+  //     guidaSwitch.textContent = "Click here to discover the Hard Skills!";
+  //     guidaSwitch.style.left = "-10%";
+  //     guidaSwitch.style.right = "auto";
+  //     guidaSwitch.style.bottom = "10%";
+  //     guidaSwitch.style.top = "auto";
+  //     guidaSwitch.style.borderRadius = "20px 0 20px 20px";
+  //     contentHard.style.display = "none";
+  //     contentSoft.style.display = "block";
+     
+  //     tHard.style.color = "transparent";
+  //     tHard.style.webkitTextStrokeWidth = "1px";
+  //     tHard.style.webkitTextStrokeColor = "var(--fo-color)";
+  //     tSoft.style.color = "var(--fo-color)";
+  //   } else {
+  //     guidaSwitch.textContent = "Click here to discover the Soft Skills!";
+  //     guidaSwitch.style.right = "-10%";
+  //     guidaSwitch.style.left = "auto";
+  //     guidaSwitch.style.top = "1%";
+  //     guidaSwitch.style.borderRadius = "20px  20px 20px 0";
+  //     contentHard.style.display = "block";
+  //     contentSoft.style.display = "none";
+  //     tSoft.style.color = "transparent";
+  //     tSoft.style.webkitTextStrokeWidth = "1px";
+  //     tSoft.style.webkitTextStrokeColor = "var(--fo-color)";
+  //     tHard.style.color = "var(--fo-color)";
+      
+  //   }
+  // }
+
+  // tSoft?.addEventListener("click", () => {
+  //   isSoftMode = true;
+  //   change(isSoftMode);
+  // });
+
+  // tHard?.addEventListener("click", () => {
+  //   isSoftMode = false;
+  //   change(isSoftMode);
+  // });
 </script>
