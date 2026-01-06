@@ -216,10 +216,14 @@ const description = "Want to work together? Contact me!";
 </BaseLayouts>
 
 <script>
+  document.addEventListener("astro:page-load", () => {
   import emailjs from "@emailjs/browser";
   import confetti from "canvas-confetti";
 
-  emailjs.init(import.meta.env.PUBLIC_EMAILJS_KEY);
+  const publicKey = import.meta.env.PUBLIC_EMAILJS_KEY;
+emailjs.init(publicKey);
+
+
 
   console.log("Script caricato correttamente");
 
@@ -272,5 +276,6 @@ const description = "Want to work together? Contact me!";
             });
         });
       }
+    });
     });
 </script>

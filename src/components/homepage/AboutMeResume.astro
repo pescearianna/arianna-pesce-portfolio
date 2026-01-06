@@ -484,6 +484,8 @@ import funnyme from "@/assets/lang-me.png";
   </template>
 </div>
   <script>
+
+    document.addEventListener("astro:page-load", () => {
     const buttons = document.querySelectorAll(".step");
     const title = document.getElementById("title");
     const desc = document.getElementById("desc");
@@ -511,6 +513,7 @@ function updateStep(btn){
       });
        
       updateStep(buttons[0]);
+   });
        
     
     

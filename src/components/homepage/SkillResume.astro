@@ -203,6 +203,8 @@ import SoftSkills from "@/components/SoftSkills.astro";
 </div>
 
 <script>
+
+  document.addEventListener("astro:page-load", () => {
   const tHard = document.getElementById("t-hard");
   const tSoft = document.getElementById("t-soft");
  const guidaSwitch = document.querySelector(".guida-switch");
@@ -249,7 +251,7 @@ import SoftSkills from "@/components/SoftSkills.astro";
   });
 
   loadTemplate("content-hard");
-
+});
   // const contentHard = document.querySelector(".content-hard");
   // const contentSoft = document.querySelector(".content-soft");
   // const guidaSwitch = document.querySelector(".guida-switch");

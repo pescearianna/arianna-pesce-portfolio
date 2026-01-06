@@ -248,7 +248,8 @@ const uniqueId = `project-card-${project.slug}`;
 </section>
 
 <script define:vars={{ uniqueId }}>
- // Script unico per tutti i componenti (più performante)
+
+ document.addEventListener("astro:page-load", () => {
   const initProjectEffect = () => {
     const containers = document.querySelectorAll('[data-project-container]');
     const isTouch = window.matchMedia("(pointer: coarse)").matches;
@@ -294,13 +295,8 @@ const uniqueId = `project-card-${project.slug}`;
         box.addEventListener("focus", () => {
             details.style.opacity = "1";         
         });
-
-// box.addEventListener("blur", () => {
-//   box.style.transform = "";
-//   light.style.background = "";
-// });
       }
-
+});
       // --- EFFETTO GIROSCOPIO (Per Mobile) ---
 
 
