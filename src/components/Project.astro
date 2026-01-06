@@ -296,47 +296,9 @@ const uniqueId = `project-card-${project.slug}`;
             details.style.opacity = "1";         
         });
       }
-});
-      // --- EFFETTO GIROSCOPIO (Per Mobile) ---
-
-
-//       if (
-//   isTouch &&
-//   typeof DeviceOrientationEvent?.requestPermission === "function"
-// ) {
-//   DeviceOrientationEvent.requestPermission().then(permission => {
-//     if (permission === "granted") {
-//       // attiva gyro
-//        const tiltX = Math.min(Math.max(e.beta, -30), 30) / 2; 
-//           const tiltY = Math.min(Math.max(e.gamma, -30), 30) / 2;
-
-//           box.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
-          
-//           // Muoviamo la luce in base all'inclinazione
-//           const lightX = 50 + (tiltY * 2);
-//           const lightY = 50 + (tiltX * 2);
-//           light.style.background = `radial-gradient(circle at ${lightX}% ${lightY}%, rgba(255,255,255,0.2), transparent 80%)`;
-//     }
-//   });
-// }
-      // if (isTouch && window.DeviceOrientationEvent) {
-      //   window.addEventListener("deviceorientation", (e) => {
-      //     // beta: inclinazione avanti/dietro (-180 a 180)
-      //     // gamma: inclinazione sinistra/destra (-90 a 90)
-      //     const tiltX = Math.min(Math.max(e.beta, -30), 30) / 2; 
-      //     const tiltY = Math.min(Math.max(e.gamma, -30), 30) / 2;
-
-      //     box.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
-          
-      //     // Muoviamo la luce in base all'inclinazione
-      //     const lightX = 50 + (tiltY * 2);
-      //     const lightY = 50 + (tiltX * 2);
-      //     light.style.background = `radial-gradient(circle at ${lightX}% ${lightY}%, rgba(255,255,255,0.2), transparent 80%)`;
-      //   });
-      // }
     });
   };
 
   initProjectEffect();
-  document.addEventListener('astro:after-swap', initProjectEffect);
+});
 </script>

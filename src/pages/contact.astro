@@ -220,64 +220,55 @@ const description = "Want to work together? Contact me!";
   import confetti from "canvas-confetti";
 
   
-  
-  
-  
-
-
-
- 
-document.addEventListener("astro:page-load", () => {
-const publicKey = import.meta.env.PUBLIC_EMAILJS_KEY;
-emailjs.init(publicKey);
+  document.addEventListener("astro:page-load", () => {
+  const publicKey = import.meta.env.PUBLIC_EMAILJS_KEY;
+  emailjs.init(publicKey);
 
   const form = document.getElementById("contact-form");
   const successMessage = document.getElementById("success-message");
-  const submitBtn = form?.querySelector('button[type="submit"]');
+  
+  if (form) {
+    const submitBtn = form.querySelector('button[type="submit"]');
 
-  document.getElementById("contact-form").addEventListener("submit", function (event) {
+    form.addEventListener("submit", function (event) {
       event.preventDefault();
 
-      if (form) {
-        form.addEventListener("submit", function (event) {
-          event.preventDefault();
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerText = "Sending message...";
+      }
 
-          if (submitBtn) {
-            submitBtn.disabled = true;
-            submitBtn.innerText = "Sending message...";
+      emailjs
+        .sendForm("service_zzfanem", "template_cm9b4zb", this)
+        .then(() => {
+          confetti();
+          this.reset(); // Svuota i campi del form
+
+          if (successMessage) {
+            successMessage.innerText = "Message sent with success! ✨";
           }
 
-          emailjs
-            .sendForm("service_zzfanem", "template_cm9b4zb", this)
-            .then(() => {
-              confetti();
-              this.reset();
+          if (submitBtn) {
+            submitBtn.innerText = "Success!";
+          }
 
-              if (successMessage) {
-                successMessage.innerText = "Message sent with success! ✨";
-              }
-
-              if (submitBtn) {
-                submitBtn.innerText = "Success!";
-              }
-
-              setTimeout(() => {
-                if (successMessage) successMessage.innerText = "";
-                if (submitBtn) {
-                  submitBtn.disabled = false;
-                  submitBtn.innerText = "Send message";
-                }
-              }, 5000);
-            })
-            .catch((error) => {
-              alert("Errore nell'invio: " + JSON.stringify(error));
-              if (submitBtn) {
-                submitBtn.disabled = false;
-                submitBtn.innerText = "Send message";
-              }
-            });
+          // Reset del bottone dopo 5 secondi
+          setTimeout(() => {
+            if (successMessage) successMessage.innerText = "";
+            if (submitBtn) {
+              submitBtn.disabled = false;
+              submitBtn.innerText = "Send message";
+            }
+          }, 5000);
+        })
+        .catch((error) => {
+          alert("Errore nell'invio: " + JSON.stringify(error));
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerText = "Send message";
+          }
         });
-      }
     });
-    });
+  }
+});
 </script>
