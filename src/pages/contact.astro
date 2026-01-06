@@ -216,24 +216,26 @@ const description = "Want to work together? Contact me!";
 </BaseLayouts>
 
 <script>
-  document.addEventListener("astro:page-load", () => {
   import emailjs from "@emailjs/browser";
   import confetti from "canvas-confetti";
 
-  const publicKey = import.meta.env.PUBLIC_EMAILJS_KEY;
+  
+  
+  
+  
+
+
+
+ 
+document.addEventListener("astro:page-load", () => {
+const publicKey = import.meta.env.PUBLIC_EMAILJS_KEY;
 emailjs.init(publicKey);
-
-
-
-  console.log("Script caricato correttamente");
 
   const form = document.getElementById("contact-form");
   const successMessage = document.getElementById("success-message");
   const submitBtn = form?.querySelector('button[type="submit"]');
 
-  document
-    .getElementById("contact-form")
-    .addEventListener("submit", function (event) {
+  document.getElementById("contact-form").addEventListener("submit", function (event) {
       event.preventDefault();
 
       if (form) {
