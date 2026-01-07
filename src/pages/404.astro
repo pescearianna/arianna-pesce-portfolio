@@ -1,8 +1,50 @@
 ---
+import Header from "@/components/Header.astro";
+import BaseLayouts from "@/layouts/BaseLayouts.astro";
+import { Icon } from "astro-icon/components";
+
 
 ---
 
+<style lang="scss">
+	body {
+		color: var(--text-color);
+		text-align: center;
+		
+	}
+	.text {
+		width: 60%;
+		margin: 4rem auto;
+		h1 {
+		font-size: 3rem;
+	}
+
+	p {
+		margin: 1rem 0;
+		font-size: 2rem;
+	}
+	.icon {
+		font-size: 5rem;
+		
+		color: var(--primary-color);
+		cursor: pointer;
+		transition: transform 0.3s ease;
+		&:hover {
+			transform: scale(1.5);
+			filter: drop-shadow(1px 1px 3px white);
+		}
+	}}
+	
+</style>
+
+
+<BaseLayouts>
+	<Header/>
 	<body>
-		<h1>404- page not foud</h1>
+		<div class="text"><h1>Oh no, this page doesn't exist!</h1>
+		<p>Please, return to the homepage.</p>
+	<Icon class="icon" name="ic:sharp-home"/></div>
+		
 	</body>
 </html>
+<BaseLayouts/>

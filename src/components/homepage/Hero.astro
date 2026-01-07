@@ -2,17 +2,69 @@
 import { Image } from "astro:assets";
 import ariannapesce from "@/assets/ariannapesce.png";
 import Button from "@/components/Button.astro";
+import flower from "@/assets/flower.png";
 ---
-<style>
-    .hero {
-    width: 100%;
-           /* height: 90vh; */
+
+<style lang="scss">
+  .hero {
+    width: clamp(90%, 1200px, 95%);
+    margin: auto;
+    min-height: 85vh; 
     background-color: var(--bg-color);
     display: flex;
+    flex-direction: column-reverse;
+    .hero-foto {
+      width: 100%;
+      height: 40vh;
+      border-bottom: 2px solid transparent;
+      border-image-source: radial-gradient(
+        circle,
+        var(--fo-color) 0%,
+        var(--bg-color) 98%
+      );
+      border-image-slice: 1;
+      position: relative;
+      .foto-me {
+        display: block;
+        height: 45vh;
+        width: auto;
+        position: absolute;
+        bottom: 0;
+        right: clamp(2%, 5%, 10%);
+        filter: drop-shadow(-3px -2px 3px rgba(22, 22, 22, 0.5));  
+      }
+
+      .flower-foto{
+        position: absolute;
+        bottom:0;
+        right: 20%;
+        
+        display: inline-block;
+        height: 125%;
+        width: auto;
+      }
+      
+      .tube {
+      background:
+        radial-gradient(ellipse at top, transparent, transparent),
+        radial-gradient(ellipse at bottom, var(--fo-color), transparent);
+
+      height: 100%; 
+      
+      width: clamp(60%, 60%, 90%);
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      border: thick double var(--fo-color);
+      border-image-slice: 4;
+      backdrop-filter: blur(3px);
+      border-radius: 10% 40% / 50% 20%;  
+      }
+    }
 
     .hero-text {
+      margin: 1rem 2rem;
       color: var(--text-color);
-     
       p {
         .different {
           color: var(--th-color);
@@ -22,139 +74,70 @@ import Button from "@/components/Button.astro";
       #cta {
         margin: 1rem 0;
       }
-      
     }
   }
 
-  @media screen and (max-width: 768px) {
-    .hero{
-      flex-direction: column-reverse;
-      gap: -2rem;
-      .hero-foto{ 
-        width: 100%;
-        float: right;
-        border-bottom: 2px solid transparent;
-        border-image-source: radial-gradient(
-      circle,
-      var(--fo-color) 0%,
-      var(--bg-color) 98%
-    );
-    border-image-slice: 1;
-       .tube{
-         display: none; 
-       }
-        .foto-me{
-           display: block;
-        height: 50vh;
-        width: auto;
-        float: right;
-        z-index: -10;
-       margin: -5rem 0.5rem 0;
-        }
-       
-      }
-      .hero-text{
-        margin: 1rem 2rem;
-      }
-
-    }
-  }
-
-  @media screen and (min-width: 480px) and (max-width: 768px) {
+  @media screen and (min-width: 768px) {
     .hero {
-      padding: 0 4rem;
-    }
-  }
-
-
-
-
-   @media screen and (min-width: 768px) {
-    .hero{
       padding-top: 2rem;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
       .hero-foto {
-      width: 49%;
-      min-height: 100%;
-      position: relative;
+        width: 48%;
+        height: 85vh;
+        border:none;
+        .foto-me {
+          height: 68vh; 
+        }
+        .flower-foto{
+          height: auto;
+          width: clamp(200px, 40vw, 425px);
+          right: 25%;
+          bottom: 5%
+      }
       .tube {
-        background-color: var(--fo-color);
-        height: 90%;
+        height: 70vh;
         width: 60%;
-        position: absolute;
-        right: 13%;
-        bottom: 0%;
-        border-radius: 50% 45% 5% 15%;
-        
-        
+        @media screen and (max-width: 1100px){
+          width: 80%;
+          
+        }
       }
-      .foto-me {
-        max-height: 525px;
-        width: auto;
-        float: left;
-        position: absolute;
-        bottom: 0;
-        left: 60%;
-        transform: translateX(-50%);
-        filter: drop-shadow(-10px -2px 3px rgba(22, 22, 22, 0.5));
       }
-    }
-    }
-     .hero-text {
-      color: var(--text-color);
-      width: 49%;
-      height: 600px;
-      font-size: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: center;
-      h1 {
-        display: inline-block;
+      .hero-text {
+        width: 48%;
+        margin: 0 2rem;
+        font-size: 1.2rem;
       }
-     
-      #cta {
-        margin: 1rem 0;
-      }
-      
-    }
-    .hero-text * {
-      
-      width: 85%;
-      
-    }
-  }
-
-  @media screen and (min-width: 992px){
-    .hero-text * {
-      
-      width: 60%;
-      
-    }
-  }
-
+  }}
 </style>
 
 <div class="hero">
-    <div class="hero-foto">
-      <div class="tube"></div>
-      <Image
-        transition:name="herome"
-        class="foto-me"
-        src={ariannapesce}
-        alt="arianna pesce profile image"
-      />
-    </div>
-    <div class="hero-text">
-      <p>&#128075; Hi there! I'm</p>
-      <h1>Arianna Pesce</h1>
-      <p>
-        A <span class="different">Front-End Developer</span> with a strong passion
-        for UX/UI Design.
-      </p>
-      <br>
-      <p> Have already a good idea for a project?</p>
-      <p id="cta">Let's talk together! &#10024;</p>
-
-      <a href="/contact" aria-label="Send me a message, go to the form"><Button text="Send a message" /></a>
-    </div>
+  <div class="hero-foto">
+    <Image class="flower-foto" alt="" src={flower} />
+    
+    <div class="tube"></div>
+    <Image
+      transition:name="herome"
+      class="foto-me"
+      src={ariannapesce}
+      alt="arianna pesce profile image"
+    />
   </div>
+  <div class="hero-text">
+    <p>&#128075; Hi there! I'm</p>
+    <h1>Arianna Pesce</h1>
+    <p>
+      A <span class="different">Front-End Developer</span> with a strong passion for
+      UX/UI Design.
+    </p>
+    <br />
+    <p>Have already a good idea for a project?</p>
+    <p id="cta">Let's talk together! &#10024;</p>
+
+    <a href="/contact" aria-label="Send me a message, go to the form"
+      ><Button text="Send a message" /></a
+    >
+  </div>
+</div>
