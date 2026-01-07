@@ -4,7 +4,8 @@ import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Project from "@/components/Project.astro";
 import { Image } from "astro:assets";
-import ariannapesce from "@/assets/ariannapesce.webp";
+import ariannapesce from "@/assets/ariannapesce.png";
+import flower from "@/assets/flower.png";
 
 const title = "Arianna Pesce | Portfolio";
 const description =
@@ -18,11 +19,11 @@ const projects = await getCollection("projects");
 <style lang="scss">
   .hero {
   width: 100%;
-  min-height: 90vh;
+  min-height: 85vh;
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  background: var(--bg-color); // il tuo colore di sfondo
+  
   box-shadow: inset 0 -3em 1em -1em rgba(0, 0, 0, 0.8);
   overflow: hidden;
 
@@ -34,15 +35,54 @@ const projects = await getCollection("projects");
     position: relative;
 
     h1 {
+      font-style: normal;
+      
       font-size: clamp(3rem, 15vw, 13rem); // Fluido tra mobile e desktop
       margin: 0;
       line-height: 0.9;
-      color: var(--fo-color);
+      // background: radial-gradient(circle, var(--fi-color) 0%, var(--fo-color) 40%, var(--fi-color) 50%,var(--fo-color) 50%,var(--fo-color) 60%, var(--fi-color) 80%,var(--fo-color) 90%);
+        background-image: radial-gradient(
+     farthest-corner at 50% 100%,
+     var(--fi-color) 20%,
+     var(--fo-color) 40%,
+     var(--fo-color) 85%,
+      var(--fi-color) 97%,
+   );
+      background-clip: text;
+color: transparent;
+text-shadow: none;
       text-align: center;
       transform: scaleY(1.8); 
       z-index: 1; // Sta dietro
-      text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.904);
-      margin-top:4rem;
+      // text-shadow: 0px 2px 2px rgba(247, 247, 247, 0.904);
+      margin-top:7rem;
+    }
+
+    .flower{
+      position: absolute;
+      bottom:0;  
+      right:0;
+      width: clamp(200px, 40vw, 375px);
+      height: auto;
+      z-index: -5;
+    
+      // .flower-foto{
+      //  width: 100%;
+      // height: auto;
+      // }
+    }
+
+
+.flower-sx{
+ position: absolute;
+      bottom:0;  
+      left:0;
+      width: clamp(200px, 40vw, 375px);
+      height: auto;
+     
+       transform: scaleX(-1);
+       transform-origin: center center;
+      z-index: -5;
     }
 
     .personal-foto {
@@ -56,7 +96,7 @@ const projects = await getCollection("projects");
         height: auto;
         /* Regola la larghezza o l'altezza massima per il responsive */
         width: 100%;
-        max-width: 500px; 
+        max-width: 300px; 
         
         @media (max-width: 500px) {
           max-width: 300px;
@@ -88,7 +128,8 @@ const projects = await getCollection("projects");
       <div class="hero-container">
 
         <h1>PORT FOLIO</h1>
-
+<span class="flower"><Image class="flower-foto" alt="" src={flower}/></span>
+<span class="flower-sx"><Image class="flower-foto" alt="" src={flower}/></span>
         <div class="personal-foto">
 
           <Image

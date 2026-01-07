@@ -21,9 +21,13 @@ const {type= "button", text} = Astro.props
         background: var(--th-color);
         color: var(--bg-color);}
         button:hover {
-          border-color: var(--fo-color);
-          background: var(--bg-color);
           color: var(--th-color);
+          background: var(--bg-color);
+          border-color: var(--th-color);
+          
+          box-shadow: 0 0 15px var(--th-color);
+          -ms-transform: scale(1.05);
+          
         }
       
 </style>
